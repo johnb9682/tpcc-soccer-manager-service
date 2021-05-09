@@ -14,6 +14,6 @@ public class HelloController {
     public String helloWorld() throws InterruptedException {
 
 
-        return "Hello World";
+        return "TPCC Soccer Manager";
     }
 }
