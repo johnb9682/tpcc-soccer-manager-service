@@ -1,7 +1,7 @@
 # tpcc-soccer-manager-service
 Spring Boot backend service
 
-## Start Spring Boot Application in Server
+## Start Spring Boot Application
 ```dtd
 sudo apt-get update
 sudo apt-get install openjdk-11-jdk
@@ -13,5 +13,5 @@ git pull origin
 ssh ubuntu@13.250.52.217  -i trip-planner-key-pair.pem
 ps -ef | grep gradle
 nohup ./gradlew bootRun >Output.log 2>&1 &
+kill -9 "数字"
 ```
-
