@@ -37,7 +37,7 @@ list local branches| `git branch`.
 checkout a branch| `git checkout <branch name>`.  
 merge a branch to another| `git merge <branch name>`.  
 delete a local branch| `git branch -d <branch name>`.  
-create a new branch (shortcut)| `git checkout -b <new branch name>`.  
+create a new branch based on current branch (shortcut)| `git checkout -b <new branch name>`.  
 
 ## File Sturcture:
 * `config` (NOT ADVISED TO CHANGE): API doc configs.
