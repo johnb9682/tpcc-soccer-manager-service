@@ -22,11 +22,7 @@ kill -9 "数字"
 ```
 
 ## Frequently Used Git Commands
-```
-git add <filename>
-git commit -m “”
-git push -u origin <branch name>
-Add remote:
-git remote add upstream <URL>
-git remove -v (view remotes)
-```
+add: `git add <filename>`, `git add -A`
+commit: `git commit -m “add message here to describe this commit”`
+pull: `git pull`
+push: existing in remote: `git push`; new branch: `git push -u origin <branch name>`
