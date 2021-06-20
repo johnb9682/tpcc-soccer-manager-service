@@ -22,7 +22,7 @@ kill -9 "数字"
 ```
 
 ## API Docs
-http://localhost:8081/swagger-ui.html 
+http://localhost:8081/swagger-ui.html  
 
 ## Frequently Used Git Commands
 Action | Git Command
@@ -37,10 +37,9 @@ list local branches| `git branch`.
 checkout a branch| `git checkout xxx_branch`.  
 merge a branch to another| `git merge xxx_branch`.  
 delete a local branch| `git branch -d xxx_branch`.  
-create a new branch (shortcut)| `git checkout -b new_branch_name`.   
+create a new branch (shortcut)| `git checkout -b new_branch_name`.  
 
-## For developers
-### File Sturcture:
+## File Sturcture:
 * `config` (NOT ADVISED TO CHANGE): API doc configs.
 *  `controller`: API Interface definitions.
 *  `dao`: Connection to the database.  
