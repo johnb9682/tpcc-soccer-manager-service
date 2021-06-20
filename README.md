@@ -34,10 +34,10 @@ pull| `git pull`.
 push (for an existing branch in remote)|  `git push`.  
 push (for a new branch)| `git push -u origin <branch name>`.  
 list local branches| `git branch`.  
-checkout a branch| `git checkout xxx_branch`.  
-merge a branch to another| `git merge xxx_branch`.  
-delete a local branch| `git branch -d xxx_branch`.  
-create a new branch (shortcut)| `git checkout -b new_branch_name`.  
+checkout a branch| `git checkout <branch name>`.  
+merge a branch to another| `git merge <branch name>`.  
+delete a local branch| `git branch -d <branch name>`.  
+create a new branch (shortcut)| `git checkout -b <new branch name>`.  
 
 ## File Sturcture:
 * `config` (NOT ADVISED TO CHANGE): API doc configs.
