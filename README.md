@@ -20,3 +20,15 @@ ps -ef | grep gradle
 nohup ./gradlew bootRun >Output.log 2>&1 &
 kill -9 "数字"
 ```
+
+## Frequently Used Git Commands
+check status: `git status`.  
+add: `git add <filename>`, `git add -A`.  
+commit: `git commit -m “add message here to describe this commit”`.  
+pull: `git pull`.  
+push: existing in remote: `git push`; new branch: `git push -u origin <branch name>`.  
+list local branches: `git branch`.  
+checkout a branch: `git checkout xxx_branch`.  
+merge a branch to another: `git merge xxx_branch`.  
+delete a local branch: `git branch -d xxx_branch`.  
+create a new branch(shortcut): `git checkout -b new_branch_name`.   
