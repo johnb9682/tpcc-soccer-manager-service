@@ -1,6 +1,7 @@
 package com.tpcc.soccer.manager.controller;
 
 import com.tpcc.soccer.manager.dto.UserRequest;
+import com.tpcc.soccer.manager.dto.UserResponse;
 import com.tpcc.soccer.manager.entity.User;
 
 import com.tpcc.soccer.manager.service.UserService;
@@ -23,7 +24,7 @@ public class MainController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/addUser")
-    public ResponseEntity<User> addUser(@RequestBody UserRequest request) {
+    public ResponseEntity<UserResponse> addUser(@RequestBody UserRequest request) {
 
         return new ResponseEntity<>(userService.addUser(request), HttpStatus.OK);
     }
