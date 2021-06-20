@@ -33,6 +33,8 @@ commit| `git commit -m “add message here to describe this commit”`.
 pull| `git pull`.  
 push (for an existing branch in remote)|  `git push`.  
 push (for a new branch)| `git push -u origin <branch name>`.  
+stash local changes| `git stash`.  
+apply back stashed changes|`git stash apply`.  
 list local branches| `git branch`.  
 checkout a branch| `git checkout <branch name>`.  
 merge a branch to current branch| `git merge <branch name>`.  
