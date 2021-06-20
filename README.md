@@ -20,3 +20,13 @@ ps -ef | grep gradle
 nohup ./gradlew bootRun >Output.log 2>&1 &
 kill -9 "数字"
 ```
+
+## Frequently Used Git Commands
+```
+git add <filename>
+git commit -m “”
+git push -u origin <branch name>
+Add remote:
+git remote add upstream <URL>
+git remove -v (view remotes)
+```
