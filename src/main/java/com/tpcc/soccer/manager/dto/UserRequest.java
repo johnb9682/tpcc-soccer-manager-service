@@ -1,11 +1,10 @@
 package com.tpcc.soccer.manager.dto;
 
-import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
-public class User {
+public class UserRequest {
     private String userName;
-    private String organization;
+    private String email;
+    private String password;
 }

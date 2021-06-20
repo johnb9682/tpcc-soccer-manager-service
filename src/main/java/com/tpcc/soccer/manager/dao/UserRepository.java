@@ -1,8 +1,8 @@
-package com.tpcc.soccer.manager;
+package com.tpcc.soccer.manager.dao;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.tpcc.soccer.manager.User;
+import com.tpcc.soccer.manager.entity.User;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete
