@@ -42,10 +42,10 @@ delete a local branch| `git branch -d <branch name>`.
 create a new branch based on current branch (shortcut)| `git checkout -b <new branch name>`.  
 
 ## File Sturcture:
-* `config` (NOT ADVISED TO CHANGE): API doc configs.
+* `config` (**NOT ADVISED TO CHANGE**): API doc configs.
 *  `controller`: API Interface definitions.
 *  `dao`: Connection to the database.  
 *  `dto`: Parameter definitions for `request` and `response`.  
 *  `entity`: Entity definitions corresponding to the database tables.  
 *  `service`: Business logics for APIs.  
-*  `Application`(NOT ADVISED TO CHANGE): Main driver of the application.  
+*  `Application`(**NOT ADVISED TO CHANGE**): Main driver of the application.  
