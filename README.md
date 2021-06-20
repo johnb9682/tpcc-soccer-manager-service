@@ -35,7 +35,7 @@ push (for an existing branch in remote)|  `git push`.
 push (for a new branch)| `git push -u origin <branch name>`.  
 list local branches| `git branch`.  
 checkout a branch| `git checkout <branch name>`.  
-merge a branch to another| `git merge <branch name>`.  
+merge a branch to current branch| `git merge <branch name>`.  
 delete a local branch| `git branch -d <branch name>`.  
 create a new branch based on current branch (shortcut)| `git checkout -b <new branch name>`.  
 
