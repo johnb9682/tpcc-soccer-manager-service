@@ -25,13 +25,26 @@ kill -9 "数字"
 http://localhost:8081/swagger-ui.html 
 
 ## Frequently Used Git Commands
-check status: `git status`.  
-add: `git add <filename>`, `git add -A`.  
-commit: `git commit -m “add message here to describe this commit”`.  
-pull: `git pull`.  
-push: existing in remote: `git push`; new branch: `git push -u origin <branch name>`.  
-list local branches: `git branch`.  
-checkout a branch: `git checkout xxx_branch`.  
-merge a branch to another: `git merge xxx_branch`.  
-delete a local branch: `git branch -d xxx_branch`.  
-create a new branch(shortcut): `git checkout -b new_branch_name`.   
+Action | Git Command
+--- | --- | 
+check status| `git status`.  
+add| `git add <filename>`, `git add -A`.  
+commit| `git commit -m “add message here to describe this commit”`.  
+pull| `git pull`.  
+push (for an existing branch in remote)|  `git push`.  
+push (for a new branch)| `git push -u origin <branch name>`.  
+list local branches| `git branch`.  
+checkout a branch| `git checkout xxx_branch`.  
+merge a branch to another| `git merge xxx_branch`.  
+delete a local branch| `git branch -d xxx_branch`.  
+create a new branch (shortcut)| `git checkout -b new_branch_name`.   
+
+## For developers
+### File Sturcture:
+* `config` (NOT ADVISED TO CHANGE): API doc configs.
+*  `controller`: API Interface definitions.
+*  `dao`: Connection to the database.  
+*  `dto`: Parameter definitions for `request` and `response`.  
+*  `entity`: Entity definitions corresponding to the database tables.  
+*  `service`: Business logics for APIs.  
+*  `Application`(NOT ADVISED TO CHANGE): Main driver of the application.  
