@@ -1,7 +1,6 @@
 package com.tpcc.soccer.manager.controller;
 
 import com.tpcc.soccer.manager.dto.User;
-import com.tpcc.soccer.manager.model.UserRequest;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +18,4 @@ public class HelloController {
         return "TPCC Soccer Manager";
     }
 
-    @CrossOrigin
-    @RequestMapping(method = RequestMethod.POST, value = "/getUser")
-    public ResponseEntity<User> getUser(UserRequest userRequest) {
-        User user = User.builder().userName("Jeff").organization("Soccer Team").build();
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
 }
