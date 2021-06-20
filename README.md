@@ -21,6 +21,9 @@ nohup ./gradlew bootRun >Output.log 2>&1 &
 kill -9 "数字"
 ```
 
+## API Docs
+http://localhost:8081/swagger-ui.html 
+
 ## Frequently Used Git Commands
 check status: `git status`.  
 add: `git add <filename>`, `git add -A`.  
