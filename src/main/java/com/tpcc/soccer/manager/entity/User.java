@@ -1,4 +1,4 @@
-package com.tpcc.soccer.manager;
+package com.tpcc.soccer.manager.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,4 +20,8 @@ public class User {
     private Integer userId;
     @Column(name = "name")
     private String userName;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "password")
+    private String password;
 }
