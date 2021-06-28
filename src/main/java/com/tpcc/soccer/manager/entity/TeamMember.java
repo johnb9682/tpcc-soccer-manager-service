@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Data
@@ -14,7 +16,7 @@ import javax.persistence.*;
 @Table(name = "team_member")
 @NoArgsConstructor
 @AllArgsConstructor
-
+@IdClass(TeamMemberCompositeKey.class)
 public class TeamMember {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,20 +25,20 @@ public class TeamMember {
     private Integer teamMemberId;
     @Column(name = "user")
     @NotNull
-    private Integer user;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_user")
-    private User teamMember;
+    @Id
+    private Integer userId;
     @Column(name = "team")
     @NotNull
-    private Integer team;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_team")
-    private Team currentTeam;
+    @Id
+    private Integer teamId;
+    //    @OneToOne(fetch = FetchType.LAZY)
+    @Column(name = "id_user")
+    private User teamMember;
     @Column(name = "is_leader")
     @NotNull
     private Boolean isLeader;
     @Column(name = "is_manager")
     @NotNull
     private Boolean isManager;
+
 }
