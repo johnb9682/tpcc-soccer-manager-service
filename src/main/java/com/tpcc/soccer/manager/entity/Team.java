@@ -21,17 +21,12 @@ public class Team {
     @Column(name = "id_team")
     @NotNull
     private Integer teamId;
-    @OneToOne(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private TeamMember teamMember;
     @Column(name = "team_name")
     @NotNull
     private String teamName;
     @Column(name = "team_leader")
     @NotNull
-    private Integer teamLeader;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_user")
-    private User user;
+    private Integer userId;
     @Column(name = "team_description")
     @NotNull
     private String teamDescription;

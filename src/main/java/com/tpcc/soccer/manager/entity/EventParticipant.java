@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Table(name = "event_participant")
 @NoArgsConstructor
 @AllArgsConstructor
+@IdClass(EventParticipantCompositeKey.class)
 
 public class EventParticipant {
     @Id
@@ -22,17 +23,13 @@ public class EventParticipant {
     @NotNull
     private Integer eventParticipantId;
     @Column(name = "user")
+    @Id
     @NotNull
-    private Integer user;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_user")
-    private User eventParticipant;
+    private Integer userId;
     @Column(name = "event")
+    @Id
     @NotNull
-    private Integer event;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_event")
-    private Event currentEvent;
+    private Integer eventId;
     @Column(name = "is_host")
     @NotNull
     private Boolean isHost;

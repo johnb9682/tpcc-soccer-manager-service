@@ -5,4 +5,5 @@ import com.tpcc.soccer.manager.entity.TeamMemberCompositeKey;
 import org.springframework.data.repository.CrudRepository;
 
 public interface TeamMemberRepository extends CrudRepository<TeamMember, TeamMemberCompositeKey> {
+
 }

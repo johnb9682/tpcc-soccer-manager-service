@@ -20,12 +20,6 @@ public class User {
     @Column(name = "id_user")
     @NotNull
     private Integer userId;
-    private String teamId;
-//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Team team;
-    private Event event;
-    private TeamMember teamMember;
-    private EventParticipant eventParticipant;
     @Column(name = "name")
     @NotNull
     private String userName;

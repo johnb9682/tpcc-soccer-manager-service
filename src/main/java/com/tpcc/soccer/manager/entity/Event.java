@@ -7,9 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Time;
-import java.util.Date;
-import java.util.concurrent.TimeoutException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Data
@@ -24,21 +23,16 @@ public class Event {
     @Column(name = "id_event")
     @NotNull
     private Integer eventId;
-    @OneToOne(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private EventParticipant eventParticipant;
     @Column(name = "event_date")
     @NotNull
-    private Date eventDate;
+    private LocalDate eventDate;
     @Column(name = "event_location")
     private String eventLocation;
     @Column(name = "event_time")
-    private Time eventTime;
+    private LocalDateTime eventTime;
     @Column(name = "event_description")
     private String eventDescription;
     @Column(name = "event_host")
     @NotNull
-    private Integer eventHost;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_user")
-    private User user;
+    private Integer userId;
 }
