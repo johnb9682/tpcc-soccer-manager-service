@@ -17,9 +17,9 @@ public class MainController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/getUser")
-    public ResponseEntity<User> getUser() {
+    public ResponseEntity<User> getUser(Integer id) {
 
-        return new ResponseEntity<>(userService.getUser(), HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
 
     @CrossOrigin
@@ -27,5 +27,12 @@ public class MainController {
     public ResponseEntity<UserResponse> addUser(@RequestBody UserRequest request) {
 
         return new ResponseEntity<>(userService.addUser(request), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST, value = "/deleteUser")
+    public ResponseEntity<User> deleteUser(Integer id) {
+
+        return new ResponseEntity<>(userService.deleteUser(id), HttpStatus.OK);
     }
 }

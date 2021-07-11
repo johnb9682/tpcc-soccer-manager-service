@@ -12,13 +12,19 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User getUser() {
-        return userRepository.findById(1).get();
+    public User getUser(Integer id) {
+        return userRepository.findById(id).get();
     }
 
     public UserResponse addUser(UserRequest request) {
         User user = User.builder().userName(request.getUserName() + "Jayking").email(request.getEmail()).password(request.getPassword()).build();
         User newUser = userRepository.save(user);
         return UserResponse.builder().userName(newUser.getUserName()).email(newUser.getEmail()).build();
+    }
+
+    public User deleteUser(Integer id) {
+        User userToDelete = userRepository.findById(id).get();
+        userRepository.deleteById(id);
+        return userToDelete;
     }
 }
