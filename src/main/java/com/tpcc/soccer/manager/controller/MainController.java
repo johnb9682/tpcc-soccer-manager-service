@@ -1,9 +1,13 @@
 package com.tpcc.soccer.manager.controller;
 
+import com.tpcc.soccer.manager.dto.TeamRequest;
+import com.tpcc.soccer.manager.dto.TeamResponse;
 import com.tpcc.soccer.manager.dto.UserRequest;
 import com.tpcc.soccer.manager.dto.UserResponse;
+import com.tpcc.soccer.manager.entity.Team;
 import com.tpcc.soccer.manager.entity.User;
 
+import com.tpcc.soccer.manager.service.TeamService;
 import com.tpcc.soccer.manager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class MainController {
     @Autowired
     private UserService userService;
+    private TeamService teamService;
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/getUser")
@@ -34,5 +39,29 @@ public class MainController {
     public ResponseEntity<User> deleteUser(Integer id) {
 
         return new ResponseEntity<>(userService.deleteUser(id), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value = "/Team")
+    public ResponseEntity<Team> getTeam(int id) {
+        return new ResponseEntity<>(teamService.getTeam(id), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.DELETE, value = "/Team")
+    public ResponseEntity<Team> deleteTeam(int id) {
+        return new ResponseEntity<>(teamService.deleteTeam(id), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST, value = "/Team")
+    public ResponseEntity<TeamResponse> addTeam(TeamRequest tr) {
+        return new ResponseEntity<>(teamService.addTeam(tr), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.PUT, value = "/Team")
+    public ResponseEntity<TeamResponse> updateTeam(TeamRequest tr, int id) {
+        return new ResponseEntity<>(teamService.updateTeam(tr, id), HttpStatus.OK);
     }
 }
