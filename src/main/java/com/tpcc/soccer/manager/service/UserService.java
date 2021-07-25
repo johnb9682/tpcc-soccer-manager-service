@@ -12,8 +12,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User getUser(Integer id) {
-        return userRepository.findById(id).get();
+    public UserResponse getUser(Integer id) {
+        User user = userRepository.findById(id).get();
+        return UserResponse.builder().userName(user.getUserName()).email(user.getEmail()).build();
     }
 
     public UserResponse addUser(UserRequest request) {
@@ -22,9 +23,9 @@ public class UserService {
         return UserResponse.builder().userName(newUser.getUserName()).email(newUser.getEmail()).build();
     }
 
-    public User deleteUser(Integer id) {
+    public UserResponse deleteUser(Integer id) {
         User userToDelete = userRepository.findById(id).get();
         userRepository.deleteById(id);
-        return userToDelete;
+        return UserResponse.builder().userName(userToDelete.getUserName()).email(userToDelete.getEmail()).build();
     }
 }

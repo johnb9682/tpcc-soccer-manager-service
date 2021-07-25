@@ -21,8 +21,8 @@ public class MainController {
     private TeamService teamService;
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.POST, value = "/getUser")
-    public ResponseEntity<User> getUser(Integer id) {
+    @RequestMapping(method = RequestMethod.GET, value = "/getUser")
+    public ResponseEntity<UserResponse> getUser(Integer id) {
 
         return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
@@ -35,8 +35,8 @@ public class MainController {
     }
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.POST, value = "/deleteUser")
-    public ResponseEntity<User> deleteUser(Integer id) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "/deleteUser")
+    public ResponseEntity<UserResponse> deleteUser(Integer id) {
 
         return new ResponseEntity<>(userService.deleteUser(id), HttpStatus.OK);
     }
