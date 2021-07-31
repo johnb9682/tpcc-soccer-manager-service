@@ -22,7 +22,7 @@ public class MainController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/getUser")
-    public ResponseEntity<UserResponse> getUser(Integer id) {
+    public ResponseEntity<UserResponse> getUser(int id) {
 
         return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
