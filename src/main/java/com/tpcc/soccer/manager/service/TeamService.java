@@ -12,8 +12,9 @@ public class TeamService {
     @Autowired
     private TeamRepository teamRepository;
 
-    public Team getTeam(int id){
-        return teamRepository.findById(id).get();
+    public TeamResponse getTeam(int id){
+        Team team = teamRepository.findById(id).get();
+        return TeamResponse.builder().team_name(team.getTeamName()).team_description(team.getTeamDescription()).leader_id(team.getUserId()).build();
     }
 
     public TeamResponse addTeam(TeamRequest tr){
@@ -22,10 +23,10 @@ public class TeamService {
         return TeamResponse.builder().team_name(newTeam.getTeamName()).team_description(newTeam.getTeamDescription()).leader_id(team.getUserId()).build();
     }
 
-    public Team deleteTeam(int id){
+    public TeamResponse deleteTeam(int id){
         Team team = teamRepository.findById(id).get();
         teamRepository.deleteById(id);
-        return team;
+        return TeamResponse.builder().team_name(team.getTeamName()).team_description(team.getTeamDescription()).leader_id(team.getUserId()).build();
     }
 
     public TeamResponse updateTeam(TeamRequest tr, int id){

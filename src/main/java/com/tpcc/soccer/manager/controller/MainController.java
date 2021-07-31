@@ -43,13 +43,13 @@ public class MainController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/team")
-    public ResponseEntity<Team> getTeam(int id) {
+    public ResponseEntity<TeamResponse> getTeam(int id) {
         return new ResponseEntity<>(teamService.getTeam(id), HttpStatus.OK);
     }
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.DELETE, value = "/team")
-    public ResponseEntity<Team> deleteTeam(int id) {
+    public ResponseEntity<TeamResponse> deleteTeam(int id) {
         return new ResponseEntity<>(teamService.deleteTeam(id), HttpStatus.OK);
     }
 
