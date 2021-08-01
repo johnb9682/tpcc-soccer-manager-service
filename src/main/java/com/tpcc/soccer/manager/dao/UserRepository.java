@@ -1,5 +1,6 @@
 package com.tpcc.soccer.manager.dao;
 
+import com.tpcc.soccer.manager.dto.UserRequest;
 import org.springframework.data.repository.CrudRepository;
 
 import com.tpcc.soccer.manager.entity.User;
