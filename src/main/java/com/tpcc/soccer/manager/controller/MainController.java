@@ -54,7 +54,7 @@ public class MainController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/team")
-    public ResponseEntity<TeamResponse> addTeam(TeamRequest tr) {
+    public ResponseEntity<TeamResponse> addTeam(@RequestBody TeamRequest tr) {
         return new ResponseEntity<>(teamService.addTeam(tr), HttpStatus.OK);
     }
 
