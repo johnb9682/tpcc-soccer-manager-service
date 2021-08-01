@@ -37,7 +37,6 @@ public class MainController {
     @CrossOrigin
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteUser")
     public ResponseEntity<UserResponse> deleteUser(Integer id) {
-
         return new ResponseEntity<>(userService.deleteUser(id), HttpStatus.OK);
     }
 
@@ -61,7 +60,7 @@ public class MainController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/team")
-    public ResponseEntity<TeamResponse> updateTeam(TeamRequest tr, int id) {
+    public ResponseEntity<TeamResponse> updateTeam(@RequestBody TeamRequest tr, int id) {
         return new ResponseEntity<>(teamService.updateTeam(tr, id), HttpStatus.OK);
     }
 }
