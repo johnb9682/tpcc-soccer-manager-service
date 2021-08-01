@@ -22,7 +22,7 @@ public class MainController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/getUser")
-    public ResponseEntity<UserResponse> getUser(Integer id) {
+    public ResponseEntity<UserResponse> getUser(int id) {
 
         return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
@@ -42,25 +42,25 @@ public class MainController {
     }
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.GET, value = "/Team")
-    public ResponseEntity<Team> getTeam(int id) {
+    @RequestMapping(method = RequestMethod.GET, value = "/team")
+    public ResponseEntity<TeamResponse> getTeam(int id) {
         return new ResponseEntity<>(teamService.getTeam(id), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.DELETE, value = "/Team")
-    public ResponseEntity<Team> deleteTeam(int id) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "/team")
+    public ResponseEntity<TeamResponse> deleteTeam(int id) {
         return new ResponseEntity<>(teamService.deleteTeam(id), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.POST, value = "/Team")
+    @RequestMapping(method = RequestMethod.POST, value = "/team")
     public ResponseEntity<TeamResponse> addTeam(TeamRequest tr) {
         return new ResponseEntity<>(teamService.addTeam(tr), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.PUT, value = "/Team")
+    @RequestMapping(method = RequestMethod.PUT, value = "/team")
     public ResponseEntity<TeamResponse> updateTeam(TeamRequest tr, int id) {
         return new ResponseEntity<>(teamService.updateTeam(tr, id), HttpStatus.OK);
     }
