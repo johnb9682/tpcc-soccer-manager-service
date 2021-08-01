@@ -28,4 +28,12 @@ public class UserService {
         userRepository.deleteById(id);
         return UserResponse.builder().userName(userToDelete.getUserName()).email(userToDelete.getEmail()).build();
     }
+
+    public User update(UserRequest request, Integer id) {
+        User updateUser = userRepository.findById(id).get();
+        updateUser.setUserName(request.getUserName());
+        updateUser.setEmail(request.getEmail());
+        userRepository.save(updateUser);
+        return updateUser;
+    }
 }
