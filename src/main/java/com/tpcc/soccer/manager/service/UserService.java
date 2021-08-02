@@ -1,11 +1,14 @@
 package com.tpcc.soccer.manager.service;
 
+import com.tpcc.soccer.manager.dto.LoginRequest;
 import com.tpcc.soccer.manager.dto.UserRequest;
 import com.tpcc.soccer.manager.dto.UserResponse;
 import com.tpcc.soccer.manager.entity.User;
 import com.tpcc.soccer.manager.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -29,11 +32,16 @@ public class UserService {
         return UserResponse.builder().userName(userToDelete.getUserName()).email(userToDelete.getEmail()).build();
     }
 
-    public User updateUser(UserRequest request, Integer id) {
+    public UserResponse updateUser(UserRequest request, Integer id) {
         User updateUser = userRepository.findById(id).get();
         updateUser.setUserName(request.getUserName());
         updateUser.setEmail(request.getEmail());
         userRepository.save(updateUser);
-        return updateUser;
+        return UserResponse.builder().userName(updateUser.getUserName()).email(updateUser.getEmail()).build();
     }
+
+//    public UserResponse getLoginUser(LoginRequest request) {
+//        User user = userRepository.findByEmailAndPassword(request.getEmail(), request.getPassword());
+//        return UserResponse.builder().userName(user.getUserName()).email(user.getEmail()).build();
+//    }
 }
