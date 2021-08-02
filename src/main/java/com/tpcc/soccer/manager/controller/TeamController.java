@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class TeamController {
+    @Autowired
     private TeamService teamService;
 
     @CrossOrigin
