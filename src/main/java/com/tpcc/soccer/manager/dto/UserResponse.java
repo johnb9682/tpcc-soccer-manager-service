@@ -1,11 +1,13 @@
 package com.tpcc.soccer.manager.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @Builder
-public class UserResponse {
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserResponse extends APIErrorResponse {
     private String userName;
     private String email;
 }
