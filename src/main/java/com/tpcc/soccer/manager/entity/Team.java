@@ -14,7 +14,6 @@ import javax.persistence.*;
 @Table(name = "team")
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +25,7 @@ public class Team {
     private String teamName;
     @Column(name = "team_leader")
     @NotNull
-    private Integer userId;
+    private int userId;
     @Column(name = "team_description")
     @NotNull
     private String teamDescription;
