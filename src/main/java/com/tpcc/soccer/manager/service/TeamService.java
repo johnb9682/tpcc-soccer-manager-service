@@ -30,7 +30,10 @@ public class TeamService {
     }
 
     public TeamResponse updateTeam(TeamRequest tr, int id){
-        Team team = Team.builder().teamName(tr.getTeam_name()).teamDescription(tr.getTeam_description()).userId(tr.getLeader_id()).teamId(id).build();
+        Team team = teamRepository.findById(id).get();
+        team.setTeamName(tr.getTeam_name());
+        team.setTeamDescription(tr.getTeam_description());
+        team.setUserId(tr.getLeader_id());
         teamRepository.save(team);
         return TeamResponse.builder().team_name(team.getTeamName()).team_description(team.getTeamDescription()).leader_id(team.getUserId()).build();
     }
