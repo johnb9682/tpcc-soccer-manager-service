@@ -22,7 +22,8 @@ kill -9 "数字"
 ```
 
 ## API Docs
-`Documentation`: http://13.229.70.125:8081/swagger-ui.html  
+`Documentation`: http://13.229.70.125:8081/swagger-ui.html
+`Local testing`: http://localhost:8081/swagger-ui.html
 `Config Reference`: https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
 
 ## Frequently Used Git Commands
