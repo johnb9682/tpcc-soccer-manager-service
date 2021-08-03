@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Data
@@ -26,9 +26,9 @@ public class Event {
     @NotNull
     private String eventName;
     @Column(name = "event_start_time")
-    private LocalDate eventStartTime;
+    private LocalDateTime eventStartTime;
     @Column(name = "event_end_time")
-    private LocalDate eventEndTime;
+    private LocalDateTime eventEndTime;
     @Column(name = "event_location")
     private String eventLocation;
     @Column(name = "event_description")
