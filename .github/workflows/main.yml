@@ -28,8 +28,6 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
       with:
@@ -50,6 +48,6 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        # docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}
         docker push soccker-manager:latest
         echo "::set-output name=image::soccker-manager:latest"
