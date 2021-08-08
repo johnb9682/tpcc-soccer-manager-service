@@ -30,15 +30,26 @@ jobs:
       run: ./gradlew build
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}
-    - name: Log in to Docker Hub
-      uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9 
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
       with:
-          registry: public.ecr.aws/t7i9l3l4/soccer-manager
-          username: username
-          password: password
-    - name: Build and push Docker images
-      uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
-      with:
-        context: .
-        push: true
-        tags: ${{ env.IMAGE_NAME }}
+        aws-access-key-id: AKIAZD73N6Z6QQIMA2GM
+        aws-secret-access-key: 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
+        aws-region: us-west-2
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@aaf69d68aa3fb14c1d5a6be9ac61fe15b48453a2
+
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        IMAGE_TAG: ${{ env.IMAGE_NAME }}
+      run: |
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS.
+        # docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push 627055654525.dkr.ecr.us-west-2.amazonaws.com/tpcc-manager/soccker-manager:latest
+        echo "::set-output name=image::627055654525.dkr.ecr.us-west-2.amazonaws.com/tpcc-manager/soccker-manager:latest"
