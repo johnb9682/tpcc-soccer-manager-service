@@ -31,4 +31,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}
     - name: Push to AWS ECR
-      run: docker image push ${{ env.IMAGE_NAME }}
+      run: docker image push public.ecr.aws/t7i9l3l4/soccer-manager/${{ env.IMAGE_NAME }}
