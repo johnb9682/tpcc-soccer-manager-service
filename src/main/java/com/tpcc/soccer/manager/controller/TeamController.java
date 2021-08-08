@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 @RestController
 public class TeamController {
     @Autowired
@@ -40,5 +42,11 @@ public class TeamController {
     @RequestMapping(method = RequestMethod.PUT, value = "/team")
     public ResponseEntity<TeamResponse> updateTeam(@RequestBody UpdateTeamRequest tr) {
         return new ResponseEntity<>(teamService.updateTeam(tr, tr.getId()), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value = "/getUserTeam")
+    public ResponseEntity<List<TeamResponse>> getUserTeam(@RequestHeader("userId") int id) {
+        return new ResponseEntity<>(teamService.getUserTeam(id), HttpStatus.OK);
     }
 }

@@ -1,16 +1,22 @@
 package com.tpcc.soccer.manager.service;
 
+import com.tpcc.soccer.manager.dao.TeamMemberRepository;
 import com.tpcc.soccer.manager.dao.TeamRepository;
 import com.tpcc.soccer.manager.dto.TeamRequest;
 import com.tpcc.soccer.manager.dto.TeamResponse;
 import com.tpcc.soccer.manager.entity.Team;
+import com.tpcc.soccer.manager.entity.TeamMember;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TeamService {
     @Autowired
     private TeamRepository teamRepository;
+    private TeamMemberRepository teamMemberRepository;
 
     public TeamResponse getTeam(int id){
         Team team = teamRepository.findById(id).get();
@@ -36,6 +42,23 @@ public class TeamService {
         team.setUserId(tr.getLeader_id());
         teamRepository.save(team);
         return TeamResponse.builder().team_name(team.getTeamName()).team_description(team.getTeamDescription()).leader_id(team.getUserId()).build();
+    }
+
+    public List<TeamResponse> getUserTeam(int id) {
+        List<TeamMember> teamMembers = (List<TeamMember>) teamMemberRepository.findAll();
+        List<Team> teams = new ArrayList<>();
+        for (TeamMember teamMember : teamMembers) {
+            if (teamMember.getUserId() == id) {
+                teams.add(teamRepository.findById(teamMember.getTeamId()).get());
+            }
+        }
+
+        List<TeamResponse> teamResponses = new ArrayList<>();
+        for (Team team : teams) {
+            teamResponses.add(TeamResponse.builder().team_name(team.getTeamName()).team_description(team.getTeamDescription()).leader_id(team.getUserId()).build());
+        }
+
+        return teamResponses;
     }
 
 }
