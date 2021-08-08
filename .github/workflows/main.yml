@@ -51,5 +51,5 @@ jobs:
         # push it to ECR so that it can
         # be deployed to ECS.
         # docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push 627055654525.dkr.ecr.us-west-2.amazonaws.com/tpcc-manager/soccker-manager:latest
-        echo "::set-output name=image::627055654525.dkr.ecr.us-west-2.amazonaws.com/tpcc-manager/soccker-manager:latest"
+        docker push soccker-manager:latest
+        echo "::set-output name=image::soccker-manager:latest"
