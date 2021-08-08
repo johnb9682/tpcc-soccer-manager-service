@@ -3,6 +3,7 @@ package com.tpcc.soccer.manager.service;
 import com.tpcc.soccer.manager.dto.LoginRequest;
 import com.tpcc.soccer.manager.dto.UserRequest;
 import com.tpcc.soccer.manager.dto.UserResponse;
+import com.tpcc.soccer.manager.dto.VerifyLoginResponse;
 import com.tpcc.soccer.manager.entity.User;
 import com.tpcc.soccer.manager.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +46,7 @@ public class UserService {
         return UserResponse.builder().userName(updateUser.getUserName()).email(updateUser.getEmail()).build();
     }
 
-    public UserResponse verifyLoginUser(LoginRequest request) {
+    public VerifyLoginResponse verifyLoginUser(LoginRequest request) {
         Specification<User> specification = (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
             if (StringUtils.hasText(request.getEmail())) {
@@ -57,27 +58,27 @@ public class UserService {
         };
 
         User user;
-        UserResponse userResponse = new UserResponse();
+        VerifyLoginResponse verifyLoginResponse = new VerifyLoginResponse();
 
         try {
             user = userRepository.findAll(specification).get(0);
         }
         catch (Exception e){
-            userResponse.setErrorMessage("User doesn't exist!");
-            userResponse.setStatusCode(2);
-            return userResponse;
+            verifyLoginResponse.setErrorMessage("User doesn't exist!");
+            verifyLoginResponse.setStatusCode(2);
+            return verifyLoginResponse;
         }
 
         if (request.getPassword().compareTo(user.getPassword()) == 0) {
-            userResponse.setErrorMessage("Login Successful!");
-            userResponse.setStatusCode(0);
-            userResponse.setUserName(user.getUserName());
-            userResponse.setEmail(user.getEmail());
+            verifyLoginResponse.setErrorMessage("Login Successful!");
+            verifyLoginResponse.setStatusCode(0);
+            verifyLoginResponse.setUserName(user.getUserName());
+            verifyLoginResponse.setEmail(user.getEmail());
         }
         else {
-            userResponse.setErrorMessage("User's password doesn't match!");
-            userResponse.setStatusCode(1);
+            verifyLoginResponse.setErrorMessage("User's password doesn't match!");
+            verifyLoginResponse.setStatusCode(1);
         }
-        return userResponse;
+        return verifyLoginResponse;
     }
 }

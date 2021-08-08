@@ -4,10 +4,7 @@ import lombok.*;
 
 @Data
 @Builder
-@EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
-@AllArgsConstructor
-public class UserResponse extends APIErrorResponse {
+public class UserResponse {
     private String userName;
     private String email;
 }

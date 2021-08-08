@@ -1,10 +1,6 @@
 package com.tpcc.soccer.manager.controller;
 
-import com.tpcc.soccer.manager.dto.LoginRequest;
-import com.tpcc.soccer.manager.dto.UpdateUserRequest;
-import com.tpcc.soccer.manager.dto.UserRequest;
-import com.tpcc.soccer.manager.dto.UserResponse;
-import com.tpcc.soccer.manager.entity.User;
+import com.tpcc.soccer.manager.dto.*;
 import com.tpcc.soccer.manager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,7 +42,7 @@ public class UserController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/verifyLoginUser")
-    public ResponseEntity<UserResponse> verifyLoginUser(@RequestBody LoginRequest request) {
+    public ResponseEntity<VerifyLoginResponse> verifyLoginUser(@RequestBody LoginRequest request) {
 
         return new ResponseEntity<>(userService.verifyLoginUser(request), HttpStatus.OK);
     }
