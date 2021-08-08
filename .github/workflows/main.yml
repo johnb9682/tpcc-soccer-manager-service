@@ -52,7 +52,7 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        # docker build . --file Dockerfile --tag ${{ env.IMAGE_TAG }} .
-        docker build -t public.ecr.aws/t7i9l3l4/soccer-manager:${{ env.IMAGE_TAG }}
+        # docker build . --file Dockerfile --tag ${{ env.IMAGE_TAG }}
+        docker build -t public.ecr.aws/t7i9l3l4/soccer-manager:${{ env.IMAGE_TAG }} .
         docker push public.ecr.aws/t7i9l3l4/soccer-manager:${{ env.IMAGE_TAG }}
         echo "::set-output name=image::soccker-manager:latest"
