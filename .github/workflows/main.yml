@@ -46,13 +46,13 @@ jobs:
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
-        ECR_REGISTRY: public.ecr.aws/t7i9l3l4/soccer-manager
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: ${{ env.IMAGE_NAME }}
       run: |
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
         # docker build . --file Dockerfile --tag ${{ env.IMAGE_TAG }}
-        docker build -t public.ecr.aws/t7i9l3l4/soccer-manager:${{ env.IMAGE_TAG }} .
-        docker push public.ecr.aws/t7i9l3l4/soccer-manager:${{ env.IMAGE_TAG }}
+        docker build -t $ECR_REGISTRY/soccer-manager:${{ env.IMAGE_TAG }} .
+        docker push $ECR_REGISTRY/soccer-manager:${{ env.IMAGE_TAG }}
         echo "::set-output name=image::soccker-manager:latest"
