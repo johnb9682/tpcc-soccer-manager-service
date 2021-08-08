@@ -53,6 +53,6 @@ jobs:
         # push it to ECR so that it can
         # be deployed to ECS.
         # docker build . --file Dockerfile --tag ${{ env.IMAGE_TAG }}
-        docker build -t $ECR_REGISTRY/soccer-manager:${{ env.IMAGE_TAG }} .
-        docker push $ECR_REGISTRY/soccer-manager:${{ env.IMAGE_TAG }}
+        docker build -t $ECR_REGISTRY/tpcc-manager:${{ env.IMAGE_TAG }} .
+        docker push $ECR_REGISTRY/tpcc-manager:${{ env.IMAGE_TAG }}
         echo "::set-output name=image::soccker-manager:latest"
