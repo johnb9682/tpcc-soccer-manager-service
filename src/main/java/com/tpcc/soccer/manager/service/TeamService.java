@@ -2,6 +2,7 @@ package com.tpcc.soccer.manager.service;
 
 import com.tpcc.soccer.manager.dao.TeamMemberRepository;
 import com.tpcc.soccer.manager.dao.TeamRepository;
+import com.tpcc.soccer.manager.dto.TeamListResponse;
 import com.tpcc.soccer.manager.dto.TeamRequest;
 import com.tpcc.soccer.manager.dto.TeamResponse;
 import com.tpcc.soccer.manager.entity.Team;
@@ -16,6 +17,7 @@ import java.util.List;
 public class TeamService {
     @Autowired
     private TeamRepository teamRepository;
+    @Autowired
     private TeamMemberRepository teamMemberRepository;
 
     public TeamResponse getTeam(int id){
@@ -44,7 +46,7 @@ public class TeamService {
         return TeamResponse.builder().team_name(team.getTeamName()).team_description(team.getTeamDescription()).leader_id(team.getUserId()).build();
     }
 
-    public List<TeamResponse> getUserTeam(int id) {
+    public TeamListResponse getUserTeam(int id) {
         List<TeamMember> teamMembers = (List<TeamMember>) teamMemberRepository.findAll();
         List<Team> teams = new ArrayList<>();
         for (TeamMember teamMember : teamMembers) {
@@ -58,7 +60,9 @@ public class TeamService {
             teamResponses.add(TeamResponse.builder().team_name(team.getTeamName()).team_description(team.getTeamDescription()).leader_id(team.getUserId()).build());
         }
 
-        return teamResponses;
+        return TeamListResponse.builder().teamResponses(teamResponses).build();
     }
+
+
 
 }

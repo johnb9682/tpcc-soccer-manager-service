@@ -1,5 +1,6 @@
 package com.tpcc.soccer.manager.controller;
 
+import com.tpcc.soccer.manager.dto.TeamListResponse;
 import com.tpcc.soccer.manager.dto.TeamRequest;
 import com.tpcc.soccer.manager.dto.TeamResponse;
 import com.tpcc.soccer.manager.dto.UpdateTeamRequest;
@@ -46,7 +47,7 @@ public class TeamController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/getUserTeam")
-    public ResponseEntity<List<TeamResponse>> getUserTeam(@RequestHeader("userId") int id) {
+    public ResponseEntity<TeamListResponse> getUserTeam(@RequestHeader("userId") int id) {
         return new ResponseEntity<>(teamService.getUserTeam(id), HttpStatus.OK);
     }
 }
