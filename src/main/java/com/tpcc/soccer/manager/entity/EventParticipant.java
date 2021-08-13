@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity // This tells Hibernate to make a table out of this class
 @Data
 @Builder
-@Table(name = "event_participant")
+@Table(name = "Event_participant")
 @NoArgsConstructor
 @AllArgsConstructor
 @IdClass(EventParticipantCompositeKey.class)

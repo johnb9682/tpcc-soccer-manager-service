@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Entity // This tells Hibernate to make a table out of this class
 @Data
 @Builder
-@Table(name = "user")
+@Table(name = "User")
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
