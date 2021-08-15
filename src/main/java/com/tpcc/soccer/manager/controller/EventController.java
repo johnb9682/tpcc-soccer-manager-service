@@ -16,35 +16,35 @@ import java.util.List;
 @RestController
 public class EventController {
     @Autowired
-    private EventService teamService;
+    private EventService eventService;
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.GET, value = "/team")
-    public ResponseEntity<EventResponse> getEvent(@RequestHeader("teamId") int id) {
-        return new ResponseEntity<>(teamService.getEvent(id), HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.GET, value = "/event")
+    public ResponseEntity<EventResponse> getEvent(@RequestHeader("eventId") int id) {
+        return new ResponseEntity<>(eventService.getEvent(id), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.DELETE, value = "/team")
-    public ResponseEntity<EventResponse> deleteEvent(@RequestHeader("teamId") int id) {
-        return new ResponseEntity<>(teamService.deleteEvent(id), HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.DELETE, value = "/event")
+    public ResponseEntity<EventResponse> deleteEvent(@RequestHeader("eventId") int id) {
+        return new ResponseEntity<>(eventService.deleteEvent(id), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.POST, value = "/team")
+    @RequestMapping(method = RequestMethod.POST, value = "/event")
     public ResponseEntity<EventResponse> addEvent(@RequestBody EventRequest eventRequest) {
-        return new ResponseEntity<>(teamService.addEvent(eventRequest), HttpStatus.OK);
+        return new ResponseEntity<>(eventService.addEvent(eventRequest), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.PUT, value = "/team")
+    @RequestMapping(method = RequestMethod.PUT, value = "/event")
     public ResponseEntity<EventResponse> updateEvent(@RequestBody UpdateEventRequest eventRequest) {
-        return new ResponseEntity<>(teamService.updateEvent(eventRequest, eventRequest.getId()), HttpStatus.OK);
+        return new ResponseEntity<>(eventService.updateEvent(eventRequest, eventRequest.getId()), HttpStatus.OK);
     }
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/getUserEvent")
     public ResponseEntity<EventListResponse> getUserEvent(@RequestHeader("userId") int id) {
-        return new ResponseEntity<>(teamService.getUserEvent(id), HttpStatus.OK);
+        return new ResponseEntity<>(eventService.getUserEvent(id), HttpStatus.OK);
     }
 }
