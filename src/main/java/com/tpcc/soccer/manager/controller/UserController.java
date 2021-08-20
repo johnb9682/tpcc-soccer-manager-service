@@ -14,7 +14,7 @@ public class UserController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/getUser")
-    public ResponseEntity<UserResponse> getUser(@RequestHeader("userId") Integer id) {
+    public ResponseEntity<UserResponseWithId> getUser(@RequestHeader("userId") Integer id) {
 
         return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }

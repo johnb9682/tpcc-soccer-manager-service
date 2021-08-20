@@ -1,9 +1,6 @@
 package com.tpcc.soccer.manager.service;
 
-import com.tpcc.soccer.manager.dto.LoginRequest;
-import com.tpcc.soccer.manager.dto.UserRequest;
-import com.tpcc.soccer.manager.dto.UserResponse;
-import com.tpcc.soccer.manager.dto.VerifyLoginResponse;
+import com.tpcc.soccer.manager.dto.*;
 import com.tpcc.soccer.manager.entity.User;
 import com.tpcc.soccer.manager.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +18,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserResponse getUser(Integer id) {
+    public UserResponseWithId getUser(Integer id) {
         User user = userRepository.findById(id).get();
-        return UserResponse.builder().userName(user.getUserName()).email(user.getEmail()).build();
+        return UserResponseWithId.builder().userId(user.getUserId()).userName(user.getUserName()).email(user.getEmail()).build();
     }
 
     public UserResponse addUser(UserRequest request) {
@@ -72,6 +69,7 @@ public class UserService {
         if (request.getPassword().compareTo(user.getPassword()) == 0) {
             verifyLoginResponse.setErrorMessage("Login Successful!");
             verifyLoginResponse.setStatusCode(0);
+            verifyLoginResponse.setUserId(user.getUserId());
             verifyLoginResponse.setUserName(user.getUserName());
             verifyLoginResponse.setEmail(user.getEmail());
         }
