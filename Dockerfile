@@ -19,4 +19,4 @@ RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 # Set our
-CMD ["nl.p4c.lambdacontainers.handlers.StreamLambdaHandler::handleRequest"]
+CMD ["com.tpcc.soccer.manager.Application::handleRequest"]
