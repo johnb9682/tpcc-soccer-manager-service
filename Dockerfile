@@ -9,9 +9,12 @@ ADD container/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
+# Add the JAR to a known path.
 ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENV JAR_DIR="/jar"
+ADD $JAR_FILE $JAR_DIR/
+# COPY ${JAR_FILE} app.jar
+# ENTRYPOINT ["java","-jar","/app.jar"]
 
 # Set our
 CMD ["nl.p4c.lambdacontainers.handlers.StreamLambdaHandler::handleRequest"]
