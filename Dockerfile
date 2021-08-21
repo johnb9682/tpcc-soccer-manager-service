@@ -4,6 +4,7 @@ ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 
+
 # Add the lambda-runtime-interface-emulator to enable local testing.
 # ADD https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/latest/download/aws-lambda-rie /usr/bin/aws-lambda-rie
 # RUN chmod +x /usr/bin/aws-lambda-rie
