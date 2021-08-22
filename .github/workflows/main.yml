@@ -67,8 +67,8 @@ jobs:
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
-        task-definition: soccer-manager
-        container-name: sample-app
+        task-definition: soccer-manager.json
+        container-name: soccer-manager
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
