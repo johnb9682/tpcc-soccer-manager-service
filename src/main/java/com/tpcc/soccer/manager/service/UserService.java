@@ -35,7 +35,7 @@ public class UserService {
         return UserResponse.builder().userName(userToDelete.getUserName()).email(userToDelete.getEmail()).build();
     }
 
-    public UserResponse updateUser(UserRequest request, Integer id) {
+    public UserResponse updateUser(UserRequestWithoutPw request, Integer id) {
         User updateUser = userRepository.findById(id).get();
         updateUser.setUserName(request.getUserName());
         updateUser.setEmail(request.getEmail());

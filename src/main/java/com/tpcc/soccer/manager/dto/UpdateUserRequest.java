@@ -5,6 +5,6 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class UpdateUserRequest extends UserRequest{
+public class UpdateUserRequest extends UserRequestWithoutPw {
     private Integer id;
 }
