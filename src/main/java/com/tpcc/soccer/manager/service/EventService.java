@@ -10,6 +10,7 @@ import com.tpcc.soccer.manager.entity.EventParticipant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,22 +24,26 @@ public class EventService {
     public EventResponse getEvent(int id) {
         Event event = eventRepository.findById(id).get();
         return EventResponse.builder().event_name(event.getEventName()).
-                event_description(event.getEventDescription()).creater_id(event.getUserId()).build();
+                event_description(event.getEventDescription()).host_id(event.getUserId()).build();
     }
 
     public EventResponse addEvent(EventRequest eventRequest){
-        Event event = Event.builder().eventName(eventRequest.getEvent_name()).
-                eventDescription(eventRequest.getEvent_description()).userId(eventRequest.getHost_id()).build();
+        Event event = Event.builder().eventName(eventRequest.getEvent_name()).userId(eventRequest.getHost_id()).
+                eventStartTime(eventRequest.getEvent_start_time()).eventEndTime(eventRequest.getEvent_end_time()).
+                eventLocation(eventRequest.getEvent_location()).
+                eventDescription(eventRequest.getEvent_description()).eventCreateTime(LocalDateTime.now()).build();
         Event newEvent = eventRepository.save(event);
         return EventResponse.builder().event_name(newEvent.getEventName()).
-                event_description(newEvent.getEventDescription()).creater_id(event.getUserId()).build();
+                event_description(newEvent.getEventDescription()).event_start_time(newEvent.getEventStartTime()).
+                event_end_time(newEvent.getEventEndTime()).event_location(newEvent.getEventLocation()).
+                create_time(newEvent.getEventCreateTime()).host_id(event.getUserId()).build();
     }
 
     public EventResponse deleteEvent(int id){
         Event event = eventRepository.findById(id).get();
         eventRepository.deleteById(id);
         return EventResponse.builder().event_name(event.getEventName()).
-                event_description(event.getEventDescription()).creater_id(event.getUserId()).build();
+                event_description(event.getEventDescription()).host_id(event.getUserId()).build();
     }
 
     public EventResponse updateEvent(EventRequest eventRequest, int id){
@@ -48,7 +53,7 @@ public class EventService {
         event.setUserId(eventRequest.getHost_id());
         eventRepository.save(event);
         return EventResponse.builder().event_name(event.getEventName()).
-                event_description(event.getEventDescription()).creater_id(event.getUserId()).build();
+                event_description(event.getEventDescription()).host_id(event.getUserId()).build();
     }
 
     public EventListResponse getUserEvent(int id) {
@@ -63,7 +68,7 @@ public class EventService {
         List<EventResponse> eventResponses = new ArrayList<>();
         for (Event event : events) {
             eventResponses.add(EventResponse.builder().event_name(event.getEventName()).
-                    event_description(event.getEventDescription()).creater_id(event.getUserId()).build());
+                    event_description(event.getEventDescription()).host_id(event.getUserId()).build());
         }
 
         return EventListResponse.builder().eventResponses(eventResponses).build();

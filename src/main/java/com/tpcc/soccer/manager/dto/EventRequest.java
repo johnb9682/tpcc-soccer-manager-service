@@ -20,6 +20,6 @@ public class EventRequest {
     private LocalDateTime event_end_time;
     private String event_location;
     private String event_description;
-    @NotNull
-    private LocalDateTime create_time;
+//    @NotNull
+//    private LocalDateTime create_time;
 }

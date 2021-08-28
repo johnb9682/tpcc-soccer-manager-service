@@ -34,8 +34,6 @@ public class EventController {
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/event")
     public ResponseEntity<EventResponse> addEvent(@RequestBody EventRequest eventRequest) {
-        LocalDateTime now = LocalDateTime.now();
-        eventRequest.setCreate_time(now);
         return new ResponseEntity<>(eventService.addEvent(eventRequest), HttpStatus.OK);
     }
 
