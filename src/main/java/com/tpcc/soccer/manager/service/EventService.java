@@ -10,6 +10,7 @@ import com.tpcc.soccer.manager.entity.EventParticipant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +29,11 @@ public class EventService {
     }
 
     public EventResponse addEvent(EventRequest eventRequest){
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Event event = Event.builder().eventName(eventRequest.getEvent_name()).userId(eventRequest.getHost_id()).
                 eventStartTime(eventRequest.getEvent_start_time()).eventEndTime(eventRequest.getEvent_end_time()).
                 eventLocation(eventRequest.getEvent_location()).
-                eventDescription(eventRequest.getEvent_description()).eventCreateTime(LocalDateTime.now()).build();
+                eventDescription(eventRequest.getEvent_description()).eventCreateTime(timestamp).build();
         Event newEvent = eventRepository.save(event);
         return EventResponse.builder().event_name(newEvent.getEventName()).
                 event_description(newEvent.getEventDescription()).event_start_time(newEvent.getEventStartTime()).

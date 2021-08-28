@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.Builder;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Data
@@ -16,12 +17,12 @@ public class EventResponse {
     private int host_id;
     @NotNull
     @DateTimeFormat
-    private LocalDateTime event_start_time;
+    private Timestamp event_start_time;
     @NotNull
     @DateTimeFormat
-    private LocalDateTime event_end_time;
+    private Timestamp event_end_time;
     private String event_location;
     private String event_description;
     @NotNull
-    private LocalDateTime create_time;
+    private Timestamp create_time;
 }
