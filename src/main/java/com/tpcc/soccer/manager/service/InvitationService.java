@@ -4,6 +4,7 @@ import com.tpcc.soccer.manager.dao.InvitationRepository;
 import com.tpcc.soccer.manager.dto.InvitationListResponse;
 import com.tpcc.soccer.manager.dto.InvitationRequest;
 import com.tpcc.soccer.manager.dto.InvitationResponse;
+import com.tpcc.soccer.manager.dto.UpdateInvitationRequest;
 import com.tpcc.soccer.manager.entity.Invitation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,6 +84,15 @@ public class InvitationService {
             }
         }
         return InvitationListResponse.builder().invitationResponses(invitationResponses).build();
+    }
+
+    public InvitationResponse updateInvitation(UpdateInvitationRequest request) {
+        Invitation invitationToUpdate = invitationRepository.findById(request.getInvitationId()).get();
+        invitationToUpdate.setStatus(request.getStatus());
+        invitationRepository.save(invitationToUpdate);
+        return InvitationResponse.builder().type(invitationToUpdate.getType()).teamId(invitationToUpdate.getTeamId()).
+                senderId(invitationToUpdate.getSenderId()).receiverId(invitationToUpdate.getReceiverId()).
+                status(invitationToUpdate.getStatus()).createTime(invitationToUpdate.getCreateTime()).build();
     }
 
 }
