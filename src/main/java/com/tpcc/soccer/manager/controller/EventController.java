@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -33,6 +34,8 @@ public class EventController {
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/event")
     public ResponseEntity<EventResponse> addEvent(@RequestBody EventRequest eventRequest) {
+        LocalDateTime now = LocalDateTime.now();
+        eventRequest.setCreate_time(now);
         return new ResponseEntity<>(eventService.addEvent(eventRequest), HttpStatus.OK);
     }
 
