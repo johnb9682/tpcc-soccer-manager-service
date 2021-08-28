@@ -8,5 +8,5 @@ import java.util.List;
 @Data
 @Builder
 public class MemberListResponse {
-    private List<UserResponse> userResponses;
+    private List<UserResponseWithId> userResponses;
 }
