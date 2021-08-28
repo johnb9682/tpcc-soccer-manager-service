@@ -20,4 +20,4 @@ ENTRYPOINT ["java","-jar","/app.jar"]
 # ENTRYPOINT ["/entrypoint.sh"]
 
 # Set our
-# CMD ["com.tpcc.soccer.manager.Application::handleRequest"]
+CMD ["com.tpcc.soccer.manager.StreamLambdaHandler::handleRequest"]
