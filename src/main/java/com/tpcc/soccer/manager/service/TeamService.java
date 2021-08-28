@@ -2,7 +2,9 @@ package com.tpcc.soccer.manager.service;
 
 import com.tpcc.soccer.manager.dao.TeamMemberRepository;
 import com.tpcc.soccer.manager.dao.TeamRepository;
+import com.tpcc.soccer.manager.dao.UserRepository;
 import com.tpcc.soccer.manager.dto.TeamListResponse;
+import com.tpcc.soccer.manager.dto.TeamMemberResponse;
 import com.tpcc.soccer.manager.dto.TeamRequest;
 import com.tpcc.soccer.manager.dto.TeamResponse;
 import com.tpcc.soccer.manager.entity.Team;
@@ -20,6 +22,8 @@ public class TeamService {
     private TeamRepository teamRepository;
     @Autowired
     private TeamMemberRepository teamMemberRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     public TeamResponse getTeam(int id){
         Team team = teamRepository.findById(id).get();

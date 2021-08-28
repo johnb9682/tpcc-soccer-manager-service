@@ -4,6 +4,7 @@ import com.tpcc.soccer.manager.dto.TeamListResponse;
 import com.tpcc.soccer.manager.dto.TeamRequest;
 import com.tpcc.soccer.manager.dto.TeamResponse;
 import com.tpcc.soccer.manager.dto.UpdateTeamRequest;
+import com.tpcc.soccer.manager.service.TeamMemberService;
 import com.tpcc.soccer.manager.service.TeamService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class TeamController {
     @Autowired
     private TeamService teamService;
+    @Autowired
+    private TeamMemberService teamMemberService;
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/team")
