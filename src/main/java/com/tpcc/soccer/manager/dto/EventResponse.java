@@ -16,10 +16,10 @@ public class EventResponse {
     @NotNull
     private int host_id;
     @NotNull
-    @DateTimeFormat
+    @jdk.jfr.Timestamp
     private Timestamp event_start_time;
     @NotNull
-    @DateTimeFormat
+    @jdk.jfr.Timestamp
     private Timestamp event_end_time;
     private String event_location;
     private String event_description;
