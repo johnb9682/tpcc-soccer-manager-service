@@ -28,7 +28,7 @@ public class EventService {
 
     public EventResponse addEvent(EventRequest eventRequest){
         Event event = Event.builder().eventName(eventRequest.getEvent_name()).
-                eventDescription(eventRequest.getEvent_description()).userId(eventRequest.getCreator_id()).build();
+                eventDescription(eventRequest.getEvent_description()).userId(eventRequest.getHost_id()).build();
         Event newEvent = eventRepository.save(event);
         return EventResponse.builder().event_name(newEvent.getEventName()).
                 event_description(newEvent.getEventDescription()).creater_id(event.getUserId()).build();
@@ -45,7 +45,7 @@ public class EventService {
         Event event = eventRepository.findById(id).get();
         event.setEventName(eventRequest.getEvent_name());
         event.setEventDescription(eventRequest.getEvent_description());
-        event.setUserId(eventRequest.getCreator_id());
+        event.setUserId(eventRequest.getHost_id());
         eventRepository.save(event);
         return EventResponse.builder().event_name(event.getEventName()).
                 event_description(event.getEventDescription()).creater_id(event.getUserId()).build();
