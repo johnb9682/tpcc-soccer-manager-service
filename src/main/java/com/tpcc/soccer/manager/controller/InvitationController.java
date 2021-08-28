@@ -21,19 +21,19 @@ public class InvitationController {
     private InvitationService invitationService;
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.GET, value = "/invitation")
+    @RequestMapping(method = RequestMethod.GET, value = "/getInvitation")
     public ResponseEntity<InvitationResponse> getInvitation(@RequestHeader("invitationId") int id) {
         return new ResponseEntity<>(invitationService.getInvitation(id), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.DELETE, value = "/invitation")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/deleteInvitation")
     public ResponseEntity<InvitationResponse> deleteInvitation(@RequestHeader("invitationId") int id) {
         return new ResponseEntity<>(invitationService.deleteInvitation(id), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @RequestMapping(method = RequestMethod.POST, value = "/invitation")
+    @RequestMapping(method = RequestMethod.POST, value = "/addInvitation")
     public ResponseEntity<InvitationResponse> addInvitation(@RequestBody InvitationRequest ir) {
         return new ResponseEntity<>(invitationService.addInvitation(ir), HttpStatus.OK);
     }
@@ -42,5 +42,11 @@ public class InvitationController {
     @RequestMapping(method = RequestMethod.GET, value = "/getUserInvitation")
     public ResponseEntity<InvitationListResponse> getUserInvitation(@RequestHeader("invitationId") int id) {
         return new ResponseEntity<>(invitationService.getUserInvitation(id), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.PUT, value = "/updateInvitation")
+    public ResponseEntity<InvitationResponse> updateInvitation(@RequestBody UpdateInvitationRequest request) {
+        return new ResponseEntity<>(invitationService.updateInvitation(request), HttpStatus.OK);
     }
 }

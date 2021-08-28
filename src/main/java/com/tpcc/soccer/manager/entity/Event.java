@@ -41,7 +41,7 @@ public class Event {
     private String eventDescription;
     @Column(name = "event_host")
     @NotNull
-    private Integer hostId;
+    private Integer userId;
     @Column(name = "create_time")
     @NotNull
     @Transient
