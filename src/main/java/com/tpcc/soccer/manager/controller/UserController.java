@@ -36,7 +36,6 @@ public class UserController {
     @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/updateUser")
     public ResponseEntity<UserResponse> updateUser(@RequestBody UpdateUserRequest request) {
-
         return new ResponseEntity<>(userService.updateUser(request, request.getId()), HttpStatus.OK);
     }
 
@@ -45,5 +44,11 @@ public class UserController {
     public ResponseEntity<VerifyLoginResponse> verifyLoginUser(@RequestBody LoginRequest request) {
 
         return new ResponseEntity<>(userService.verifyLoginUser(request), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.PUT, value = "/activeUser")
+    public ResponseEntity<UserResponse> activeUser(@RequestBody UpdateUserRequest request) {
+        return new ResponseEntity<>(userService.activeUser(request, request.getId()), HttpStatus.OK);
     }
 }

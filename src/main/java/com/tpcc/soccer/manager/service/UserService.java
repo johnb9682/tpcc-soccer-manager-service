@@ -10,6 +10,7 @@ import org.springframework.util.StringUtils;
 
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,8 @@ public class UserService {
     }
 
     public UserResponse addUser(UserRequest request) {
-        User user = User.builder().userName(request.getUserName()).email(request.getEmail()).password(request.getPassword()).build();
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        User user = User.builder().userName(request.getUserName()).email(request.getEmail()).password(request.getPassword()).userCreateTime(timestamp).userLastActiveTime(timestamp).build();
         User newUser = userRepository.save(user);
         return UserResponse.builder().userName(newUser.getUserName()).email(newUser.getEmail()).build();
     }
@@ -78,5 +80,13 @@ public class UserService {
             verifyLoginResponse.setStatusCode(1);
         }
         return verifyLoginResponse;
+    }
+
+    public UserResponse activeUser(UpdateUserRequest request, Integer id) {
+        User activeUser = userRepository.findById(id).get();
+        Timestamp timestamp = new Timestamp((System.currentTimeMillis()));
+        activeUser.setUserLastActiveTime(timestamp);
+        userRepository.save(activeUser);
+        return UserResponse.builder().lastActive(activeUser.getUserLastActiveTime()).build();
     }
 }
