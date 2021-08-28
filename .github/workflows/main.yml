@@ -62,14 +62,14 @@ jobs:
         # docker push $ECR_REGISTRY/soccer-manager:${{ env.IMAGE_TAG }}
         docker push $ECR_REGISTRY/tpcc-manager:${{ env.IMAGE_TAG }}
         echo "::set-output name=image::$ECR_REGISTRY/tpcc-manager:${{ env.IMAGE_TAG }}"
-        
-#     - name: Fill in the new image ID in the Amazon ECS task definition
-#       id: task-def
-#       uses: aws-actions/amazon-ecs-render-task-definition@v1
-#       with:
-#         task-definition: task_definition.json
-#         container-name: soccer-manager
-#         image: ${{ steps.build-image.outputs.image }}
+
+     - name: Fill in the new image ID in the Amazon ECS task definition
+       id: task-def
+       uses: aws-actions/amazon-ecs-render-task-definition@v1
+       with:
+         task-definition: task_definition.json
+         container-name: soccer-manager
+         image: ${{ steps.build-image.outputs.image }}
 
 #     - name: Deploy Amazon ECS task definition
 #       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
