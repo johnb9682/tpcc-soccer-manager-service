@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @Entity // This tells Hibernate to make a table out of this class
 @Data
 @Builder
-@Table(name = "Event")
+@Table(name = "event")
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -36,4 +37,7 @@ public class Event {
     @Column(name = "event_host")
     @NotNull
     private Integer userId;
+    @Column(name = "create_time")
+    @NotNull
+    private LocalDateTime eventCreateTime;
 }

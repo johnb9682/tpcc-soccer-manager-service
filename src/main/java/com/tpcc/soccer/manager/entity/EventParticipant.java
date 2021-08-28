@@ -7,11 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Data
 @Builder
-@Table(name = "Event_participant")
+@Table(name = "event_participant")
 @NoArgsConstructor
 @AllArgsConstructor
 @IdClass(EventParticipantCompositeKey.class)
@@ -33,4 +34,7 @@ public class EventParticipant {
     @Column(name = "is_host")
     @NotNull
     private Boolean isHost;
+    @Column(name = "create_time")
+    @NotNull
+    private LocalDateTime eventParticipantCreateTime;
 }
