@@ -10,6 +10,7 @@ import com.tpcc.soccer.manager.entity.TeamMember;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,12 +28,13 @@ public class TeamService {
     }
 
     public TeamResponse addTeam(TeamRequest tr){
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Team team = Team.builder().teamName(tr.getTeam_name()).teamDescription(tr.getTeam_description()).
-                userId(tr.getLeader_id()).teamCreateTime(tr.getCreate_time()).build();
+                userId(tr.getLeader_id()).teamCreateTime(timestamp).build();
         Team newTeam = teamRepository.save(team);
         return TeamResponse.builder().team_id(newTeam.getTeamId()).team_name(newTeam.getTeamName()).
-                team_description(newTeam.getTeamDescription()).leader_id(team.getUserId()).
-                create_time(team.getTeamCreateTime()).build();
+                team_description(newTeam.getTeamDescription()).leader_id(newTeam.getUserId()).
+                create_time(newTeam.getTeamCreateTime()).build();
     }
 
     public TeamResponse deleteTeam(int id){

@@ -28,10 +28,12 @@ public class Event {
     @Column(name = "event_start_time")
     @Transient
     @NotNull
+    @jdk.jfr.Timestamp
     private Timestamp eventStartTime;
     @Column(name = "event_end_time")
     @Transient
     @NotNull
+    @jdk.jfr.Timestamp
     private Timestamp eventEndTime;
     @Column(name = "event_location")
     private String eventLocation;
@@ -43,5 +45,6 @@ public class Event {
     @Column(name = "create_time")
     @NotNull
     @Transient
+    @jdk.jfr.Timestamp
     private Timestamp eventCreateTime;
 }

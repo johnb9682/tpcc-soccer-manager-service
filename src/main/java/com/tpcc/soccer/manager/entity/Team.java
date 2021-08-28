@@ -32,5 +32,7 @@ public class Team {
     private String teamDescription;
     @Column(name = "create_time")
     @NotNull
+    @jdk.jfr.Timestamp
+    @Transient
     private Timestamp teamCreateTime;
 }
