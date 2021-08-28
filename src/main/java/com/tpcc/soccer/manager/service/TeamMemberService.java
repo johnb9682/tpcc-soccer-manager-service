@@ -6,6 +6,7 @@ import com.tpcc.soccer.manager.dao.UserRepository;
 import com.tpcc.soccer.manager.dto.MemberListResponse;
 import com.tpcc.soccer.manager.dto.TeamMemberResponse;
 import com.tpcc.soccer.manager.dto.UserResponse;
+import com.tpcc.soccer.manager.dto.UserResponseWithId;
 import com.tpcc.soccer.manager.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,9 +28,9 @@ public class TeamMemberService {
                 users.add(userRepository.findById(tm.getUserId()).get());
             }
         }
-        List<UserResponse> userResponses = new ArrayList<>();
+        List<UserResponseWithId> userResponses = new ArrayList<>();
         for (User user: users){
-            userResponses.add(UserResponse.builder().userName(user.getUserName()).email(user.getEmail()).build());
+            userResponses.add(UserResponseWithId.builder().userId(user.getUserId()).userName(user.getUserName()).email(user.getEmail()).build());
         }
 
         return MemberListResponse.builder().userResponses(userResponses).build();
