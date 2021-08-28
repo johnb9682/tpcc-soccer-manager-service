@@ -51,11 +51,16 @@ public class EventService {
     public EventResponse updateEvent(EventRequest eventRequest, int id){
         Event event = eventRepository.findById(id).get();
         event.setEventName(eventRequest.getEvent_name());
+        event.setEventStartTime(eventRequest.getEvent_start_time());
+        event.setEventEndTime(eventRequest.getEvent_end_time());
+        event.setEventLocation(eventRequest.getEvent_location());
         event.setEventDescription(eventRequest.getEvent_description());
         event.setUserId(eventRequest.getHost_id());
         eventRepository.save(event);
         return EventResponse.builder().event_name(event.getEventName()).
-                event_description(event.getEventDescription()).host_id(event.getUserId()).build();
+                event_description(event.getEventDescription()).event_start_time(event.getEventStartTime()).
+                event_end_time(event.getEventEndTime()).event_location(event.getEventLocation()).
+                host_id(event.getUserId()).build();
     }
 
     public EventListResponse getUserEvent(int id) {
