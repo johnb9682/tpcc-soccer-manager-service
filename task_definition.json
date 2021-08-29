@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/spring-boot-task-definition",
+          "awslogs-group": "/ecs/event-manager-task-definition",
           "awslogs-region": "us-west-2",
           "awslogs-stream-prefix": "ecs"
         }
@@ -54,7 +54,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "22th-event-manager-container"
+      "name": "event-manager-container"
     }
   ],
   "placementConstraints": [],
@@ -64,8 +64,8 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-west-2:627055654525:task-definition/spring-boot-task-definition:1",
-  "family": "spring-boot-task-definition",
+  "taskDefinitionArn": "arn:aws:ecs:us-west-2:627055654525:task-definition/event-manager-task-definition:5",
+  "family": "event-manager-task-definition",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -122,7 +122,7 @@
   ],
   "networkMode": "awsvpc",
   "cpu": "256",
-  "revision": 1,
+  "revision": 5,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
