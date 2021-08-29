@@ -74,7 +74,7 @@ jobs:
     - name: Deploy Amazon ECS task definition
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        task-definition: spring-boot-task-definition:1
         service: 22th-event-manager-service
         cluster: default
         wait-for-service-stability: true
