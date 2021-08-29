@@ -89,4 +89,22 @@ public class UserService {
         userRepository.save(activeUser);
         return UserResponse.builder().lastActive(activeUser.getUserLastActiveTime()).build();
     }
+
+    public UserListResponse searchUser(String name) {
+        List<User> users = userRepository.findAll();
+        List<User> usersFound = new ArrayList<>();
+        for (User user : users) {
+            if (user.getUserName().contains(name)) {
+                usersFound.add(user);
+            }
+        }
+
+        List<UserResponseWithId> userResponses = new ArrayList<>();
+        for (User user : usersFound) {
+            userResponses.add(UserResponseWithId.builder().userId(user.getUserId()).userName(user.getUserName()).
+                    email(user.getEmail()).build());
+        }
+
+        return UserListResponse.builder().userResponses(userResponses).build();
+    }
 }

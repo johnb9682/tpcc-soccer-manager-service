@@ -51,4 +51,10 @@ public class UserController {
     public ResponseEntity<UserResponse> activeUser(@RequestBody UpdateUserRequest request) {
         return new ResponseEntity<>(userService.activeUser(request, request.getId()), HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value = "/searchUser")
+    public ResponseEntity<UserListResponse> searchUser(String name) {
+        return new ResponseEntity<>(userService.searchUser(name), HttpStatus.OK);
+    }
 }
