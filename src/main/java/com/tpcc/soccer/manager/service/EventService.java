@@ -24,12 +24,12 @@ public class EventService {
     public EventResponse getEvent(int id) {
         Event event = eventRepository.findById(id).get();
         return EventResponse.builder().event_name(event.getEventName()).
-                event_description(event.getEventDescription()).host_id(event.getHostId()).build();
+                event_description(event.getEventDescription()).host_id(event.getUserId()).build();
     }
 
     public EventResponse addEvent(EventRequest eventRequest){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        Event event = Event.builder().eventName(eventRequest.getEvent_name()).hostId(eventRequest.getHost_id()).
+        Event event = Event.builder().eventName(eventRequest.getEvent_name()).userId(eventRequest.getHost_id()).
                 eventStartTime(eventRequest.getEvent_start_time()).eventEndTime(eventRequest.getEvent_end_time()).
                 eventLocation(eventRequest.getEvent_location()).
                 eventDescription(eventRequest.getEvent_description()).eventCreateTime(timestamp).build();
@@ -37,14 +37,14 @@ public class EventService {
         return EventResponse.builder().event_name(newEvent.getEventName()).
                 event_description(newEvent.getEventDescription()).event_start_time(newEvent.getEventStartTime()).
                 event_end_time(newEvent.getEventEndTime()).event_location(newEvent.getEventLocation()).
-                create_time(newEvent.getEventCreateTime()).host_id(event.getHostId()).build();
+                create_time(newEvent.getEventCreateTime()).host_id(event.getUserId()).build();
     }
 
     public EventResponse deleteEvent(int id){
         Event event = eventRepository.findById(id).get();
         eventRepository.deleteById(id);
         return EventResponse.builder().event_name(event.getEventName()).
-                event_description(event.getEventDescription()).host_id(event.getHostId()).build();
+                event_description(event.getEventDescription()).host_id(event.getUserId()).build();
     }
 
     public EventResponse updateEvent(EventRequest eventRequest, int id){
@@ -54,12 +54,12 @@ public class EventService {
         event.setEventEndTime(eventRequest.getEvent_end_time());
         event.setEventLocation(eventRequest.getEvent_location());
         event.setEventDescription(eventRequest.getEvent_description());
-        event.setHostId(eventRequest.getHost_id());
+        event.setUserId(eventRequest.getHost_id());
         eventRepository.save(event);
         return EventResponse.builder().event_name(event.getEventName()).
                 event_description(event.getEventDescription()).event_start_time(event.getEventStartTime()).
                 event_end_time(event.getEventEndTime()).event_location(event.getEventLocation()).
-                host_id(event.getHostId()).build();
+                host_id(event.getUserId()).build();
     }
 
     public EventListResponse getUserEvent(int id) {
@@ -74,7 +74,7 @@ public class EventService {
         List<EventResponse> eventResponses = new ArrayList<>();
         for (Event event : events) {
             eventResponses.add(EventResponse.builder().event_name(event.getEventName()).
-                    event_description(event.getEventDescription()).host_id(event.getHostId()).build());
+                    event_description(event.getEventDescription()).host_id(event.getUserId()).build());
         }
 
         return EventListResponse.builder().eventResponses(eventResponses).build();
