@@ -68,7 +68,7 @@ jobs:
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task_definition.json
-        container-name: 22th-event-manager-container
+        container-name: event-manager-container
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
