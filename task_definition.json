@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::627055654525:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::627055654525:role/ECS-Task-Role-To-Manage-AWS",
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/soccer-manager",
+          "awslogs-group": "/ecs/spring-boot-task-definition",
           "awslogs-region": "us-west-2",
           "awslogs-stream-prefix": "ecs"
         }
@@ -34,7 +34,7 @@
       "secrets": null,
       "dockerSecurityOptions": null,
       "memory": null,
-      "memoryReservation": 256,
+      "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
       "image": "627055654525.dkr.ecr.us-west-2.amazonaws.com/tpcc-manager:latest",
@@ -54,18 +54,18 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "soccer-manager"
+      "name": "22th-event-manager-container"
     }
   ],
   "placementConstraints": [],
   "memory": "512",
-  "taskRoleArn": "arn:aws:iam::627055654525:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::627055654525:role/ECS-Task-Role-To-Manage-AWS",
   "compatibilities": [
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-west-2:627055654525:task-definition/soccer-manager:1",
-  "family": "soccer-manager",
+  "taskDefinitionArn": "arn:aws:ecs:us-west-2:627055654525:task-definition/spring-boot-task-definition:1",
+  "family": "spring-boot-task-definition",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -90,12 +90,6 @@
       "targetType": null,
       "value": null,
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
     },
     {
       "targetId": null,
