@@ -34,7 +34,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+      uses: aws-actions/configure-aws-credentials@v1
       with:
         # aws-access-key-id: ${{ secrets.awsAccessKeyId }}
         aws-access-key-id: ${{ secrets.JOHNAWSACCESSKEYID }}
@@ -45,7 +45,7 @@ jobs:
 
     - name: Login to Amazon ECR
       id: login-ecr
-      uses: aws-actions/amazon-ecr-login@aaf69d68aa3fb14c1d5a6be9ac61fe15b48453a2
+      uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
