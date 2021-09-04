@@ -8,6 +8,7 @@ import com.tpcc.soccer.manager.dto.TeamMemberResponse;
 import com.tpcc.soccer.manager.dto.UserResponse;
 import com.tpcc.soccer.manager.dto.UserResponseWithId;
 import com.tpcc.soccer.manager.entity.User;
+import com.tpcc.soccer.manager.exceptions.LeaderException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.tpcc.soccer.manager.entity.TeamMember;
@@ -36,12 +37,15 @@ public class TeamMemberService {
         return MemberListResponse.builder().userResponses(userResponses).build();
     }
 
-    public TeamMemberResponse deleteMemberFromTeam(int userId, int teamId){
+    public TeamMemberResponse deleteMemberFromTeam(int userId, int teamId) throws LeaderException {
         List<TeamMember> members = (List<TeamMember>) teamMemberRepository.findAll();
         int id = -1;
         TeamMember member = new TeamMember();
         for (TeamMember tm: members){
             if (tm.getUserId() == userId && tm.getTeamId() == teamId) {
+                if (tm.getIsLeader()){
+                    throw new LeaderException();
+                }
                 id = tm.getTeamMemberId();
                 member = tm;
                 break;
@@ -50,6 +54,7 @@ public class TeamMemberService {
         if (id == -1) {
             return null;
         }
+        teamMemberRepository.deleteById(id);
         return TeamMemberResponse.builder().teamMember_id(member.getTeamMemberId()).user_id(member.getUserId()).team_id(member.getTeamId()).is_leader(member.getIsLeader()).is_manager(member.getIsManager()).build();
     }
 
