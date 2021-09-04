@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -32,9 +33,13 @@ public class User {
     private String password;
     @Column(name = "create_time")
     @NotNull
-    private LocalDateTime userCreateTime;
+    @Transient
+    @jdk.jfr.Timestamp
+    private Timestamp userCreateTime;
     @Column(name = "last_active")
     @NotNull
-    private  LocalDateTime userLastActiveTime;
+    @Transient
+    @jdk.jfr.Timestamp
+    private Timestamp userLastActiveTime;
 
 }

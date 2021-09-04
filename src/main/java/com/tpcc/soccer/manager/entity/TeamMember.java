@@ -1,6 +1,7 @@
 package com.tpcc.soccer.manager.entity;
 
 import com.sun.istack.NotNull;
+import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,5 +40,7 @@ public class TeamMember {
     private Boolean isManager;
     @Column(name = "create_time")
     @NotNull
-    private LocalDateTime teamMemberCreateTime;
+    @Transient
+    @jdk.jfr.Timestamp
+    private Timestamp teamMemberCreateTime;
 }

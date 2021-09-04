@@ -15,6 +15,7 @@ import com.tpcc.soccer.manager.entity.TeamMember;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class TeamMemberService {
     @Autowired
     private TeamMemberRepository teamMemberRepository;

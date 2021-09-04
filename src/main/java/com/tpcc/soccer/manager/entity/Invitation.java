@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -40,7 +42,11 @@ public class Invitation {
     private Integer status; // 0 is pending; -1 is rejected; 1 is accepted;
     @Column(name = "create_time")
     @NotNull
-    private LocalDateTime createTime;
+    @Transient
+    @jdk.jfr.Timestamp
+    private Timestamp createTime;
     @Column(name = "response_time")
-    private LocalDateTime responseTime;
+    @Transient
+    @jdk.jfr.Timestamp
+    private Timestamp responseTime;
 }

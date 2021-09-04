@@ -1,6 +1,7 @@
 package com.tpcc.soccer.manager.entity;
 
 import com.sun.istack.NotNull;
+import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,5 +37,7 @@ public class EventParticipant {
     private Boolean isHost;
     @Column(name = "create_time")
     @NotNull
-    private LocalDateTime eventParticipantCreateTime;
+    @Transient
+    @jdk.jfr.Timestamp
+    private Timestamp eventParticipantCreateTime;
 }

@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::627055654525:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::694173688035:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
@@ -9,12 +9,12 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/soccer-manager",
-          "awslogs-region": "us-west-2",
+          "awslogs-group": "/ecs/first-run-task-definition",
+          "awslogs-region": "ap-southeast-1",
           "awslogs-stream-prefix": "ecs"
         }
       },
-      "entryPoint": null,
+      "entryPoint": [],
       "portMappings": [
         {
           "hostPort": 8081,
@@ -22,7 +22,7 @@
           "containerPort": 8081
         }
       ],
-      "command": null,
+      "command": [],
       "linuxParameters": null,
       "cpu": 0,
       "environment": [],
@@ -34,18 +34,25 @@
       "secrets": null,
       "dockerSecurityOptions": null,
       "memory": null,
-      "memoryReservation": 256,
+      "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "627055654525.dkr.ecr.us-west-2.amazonaws.com/tpcc-manager:latest",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
       "disableNetworking": null,
       "interactive": null,
-      "healthCheck": null,
+      "healthCheck": {
+        "retries": 10,
+        "command": [
+          "curl -f http://localhost/actuator/health || exit 1"
+        ],
+        "timeout": 60,
+        "interval": 300,
+        "startPeriod": 300
+      },
       "essential": true,
-      "links": null,
+      "links": [],
       "hostname": null,
       "extraHosts": null,
       "pseudoTerminal": null,
@@ -54,18 +61,18 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "soccer-manager"
+      "name": "soccer-manager-container"
     }
   ],
   "placementConstraints": [],
   "memory": "512",
-  "taskRoleArn": "arn:aws:iam::627055654525:role/ecsTaskExecutionRole",
+  "taskRoleArn": null,
   "compatibilities": [
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-west-2:627055654525:task-definition/soccer-manager:1",
-  "family": "soccer-manager",
+  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:694173688035:task-definition/first-run-task-definition:1",
+  "family": "first-run-task-definition",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -95,13 +102,7 @@
       "targetId": null,
       "targetType": null,
       "value": null,
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.task-iam-role"
+      "name": "ecs.capability.container-health-check"
     },
     {
       "targetId": null,
@@ -120,6 +121,12 @@
       "targetType": null,
       "value": null,
       "name": "ecs.capability.task-eni"
+    },
+    {
+      "targetId": null,
+      "targetType": null,
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
     }
   ],
   "pidMode": null,
