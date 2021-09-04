@@ -15,7 +15,7 @@ public class HelloController {
     }
     
     @RequestMapping(method = RequestMethod.GET, value = "/test-ecs")
-    public String helloWorld() throws InterruptedException {
+    public String ecsHelloWorld() throws InterruptedException {
 
         return "TPCC Soccer Manager Test API";
     }
