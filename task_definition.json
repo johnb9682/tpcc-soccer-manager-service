@@ -9,7 +9,7 @@
         "logDriver": "awslogs",
         "secretOptions": null,
         "options": {
-          "awslogs-group": "/ecs/event-manager-task-definition",
+          "awslogs-group": "/ecs/soccer-manager-task-definition",
           "awslogs-region": "us-west-2",
           "awslogs-stream-prefix": "ecs"
         }
@@ -54,7 +54,7 @@
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
-      "name": "event-manager-container"
+      "name": "soccer-manager-container"
     }
   ],
   "placementConstraints": [],
@@ -64,8 +64,8 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-west-2:627055654525:task-definition/event-manager-task-definition:5",
-  "family": "event-manager-task-definition",
+  "taskDefinitionArn": "arn:aws:ecs:us-west-2:627055654525:task-definition/soccer-manager-task-definition:1",
+  "family": "soccer-manager-task-definition",
   "requiresAttributes": [
     {
       "targetId": null,
@@ -122,7 +122,7 @@
   ],
   "networkMode": "awsvpc",
   "cpu": "256",
-  "revision": 5,
+  "revision": 1,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,
