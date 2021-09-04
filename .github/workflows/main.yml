@@ -68,7 +68,7 @@ jobs:
 #       uses: aws-actions/amazon-ecs-render-task-definition@v1
 #       with:
 #         task-definition: task_definition.json
-#         container-name: event-manager-container
+#         container-name: soccer-manager-container
 #         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
@@ -76,6 +76,6 @@ jobs:
       with:
 #         task-definition: ${{ steps.task-def.outputs.task-definition }}
         task-definition: task_definition.json
-        service: 22th-event-manager-service
+        service: soccer-manager-service
         cluster: default
         wait-for-service-stability: true
