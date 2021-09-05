@@ -54,7 +54,7 @@ public class UserController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/searchUser")
-    public ResponseEntity<UserListResponse> searchUser(String name) {
+    public ResponseEntity<UserListResponse> searchUser(@RequestHeader("name") String name) {
         return new ResponseEntity<>(userService.searchUser(name), HttpStatus.OK);
     }
 }

@@ -22,7 +22,7 @@ kill -9 "数字"
 ```
 
 ## API Docs
-`Documentation`: http://13.229.70.125:8081/swagger-ui.html
+`Documentation`: http://13.213.77.131:8081/swagger-ui.html
 
 `Local testing`: http://localhost:8081/swagger-ui.html
 
