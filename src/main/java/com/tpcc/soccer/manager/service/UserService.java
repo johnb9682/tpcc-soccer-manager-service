@@ -16,6 +16,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class UserService {
@@ -97,7 +98,7 @@ public class UserService {
         List<User> users = userRepository.findAll();
         List<User> usersFound = new ArrayList<>();
         for (User user : users) {
-            if (user.getUserName().contains(name)) {
+            if (user.getUserName().toLowerCase().contains(name.toLowerCase())) {
                 usersFound.add(user);
             }
         }
