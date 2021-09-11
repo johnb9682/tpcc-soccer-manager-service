@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity // This tells Hibernate to make a table out of this class
