@@ -27,13 +27,14 @@ public class EventService {
     public EventResponse getEvent(int id) {
         Event event = eventRepository.findById(id).get();
         return EventResponse.builder().eventName(event.getEventName()).
-                eventDescription(event.getEventDescription()).hostId(event.getUserId()).build();
+                eventDescription(event.getEventDescription()).hostId(event.getUserId()).
+                eventStartTime(event.getEventStartTime()).eventEndTime(event.getEventEndTime()).build();
     }
 
     public EventResponse addEvent(EventRequest eventRequest){
-        Timestamp createTime = new Timestamp(System.currentTimeMillis());
-        Timestamp eventStartTime = new Timestamp(eventRequest.getEventStartTime()* 1000L);
-        Timestamp eventEndTime = new Timestamp(eventRequest.getEventStartTime()* 1000L);
+        Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
+        Timestamp eventStartTime = new Timestamp((eventRequest.getEventStartTime()/1000)* 1000L);
+        Timestamp eventEndTime = new Timestamp((eventRequest.getEventStartTime()/1000)* 1000L);
         Event event = Event.builder().eventName(eventRequest.getEventName()).userId(eventRequest.getHostId()).
                 eventStartTime(eventStartTime).eventEndTime(eventEndTime).
                 eventLocation(eventRequest.getEventLocation()).
