@@ -7,13 +7,7 @@ import java.sql.Timestamp;
 
 @Data
 public class TeamRequest {
-    @NotNull
-    private String team_description;
-    @NotNull
-    private String team_name;
-    @NotNull
-    private int leader_id;
-    @NotNull
-    @jdk.jfr.Timestamp
-    private Timestamp create_time;
+    private String teamDescription;
+    private String teamName;
+    private int leaderId;
 }

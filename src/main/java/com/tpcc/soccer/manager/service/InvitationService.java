@@ -87,8 +87,10 @@ public class InvitationService {
     }
 
     public InvitationResponse updateInvitation(UpdateInvitationRequest request) {
+        Timestamp responseTime = new Timestamp(request.getResponseTime());
         Invitation invitationToUpdate = invitationRepository.findById(request.getInvitationId()).get();
         invitationToUpdate.setStatus(request.getStatus());
+        invitationToUpdate.setResponseTime(responseTime);
         invitationRepository.save(invitationToUpdate);
         return InvitationResponse.builder().type(invitationToUpdate.getType()).teamId(invitationToUpdate.getTeamId()).
                 senderId(invitationToUpdate.getSenderId()).receiverId(invitationToUpdate.getReceiverId()).

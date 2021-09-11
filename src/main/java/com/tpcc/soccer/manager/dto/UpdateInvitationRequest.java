@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class UpdateInvitationRequest {
-    private Integer invitationId;
-    private Integer status;
+    private int invitationId;
+    private int status;
+    private int responseTime;
 }

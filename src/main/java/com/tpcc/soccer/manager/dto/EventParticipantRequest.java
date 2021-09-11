@@ -6,8 +6,8 @@ import java.time.LocalDateTime;
 
 @Data
 public class EventParticipantRequest {
-    private int event_participant_id;
-    private int event_id;
-    private int user_id;
-    private boolean is_host;
+    private int eventParticipantId;
+    private int eventId;
+    private int userId;
+    private boolean isHost;
 }

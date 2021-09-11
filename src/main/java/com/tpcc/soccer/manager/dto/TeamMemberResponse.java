@@ -6,9 +6,9 @@ import lombok.Builder;
 @Data
 @Builder
 public class TeamMemberResponse {
-    private int teamMember_id;
-    private int user_id;
-    private int team_id;
-    private boolean is_leader;
-    private boolean is_manager;
+    private int teamMemberId;
+    private int userId;
+    private int teamId;
+    private boolean isLeader;
+    private boolean isManager;
 }

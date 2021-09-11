@@ -27,35 +27,35 @@ public class TeamService {
 
     public TeamResponse getTeam(int id){
         Team team = teamRepository.findById(id).get();
-        return TeamResponse.builder().team_id(id).team_name(team.getTeamName()).
-                team_description(team.getTeamDescription()).leader_id(team.getUserId()).build();
+        return TeamResponse.builder().teamId(id).teamName(team.getTeamName()).
+                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).build();
     }
 
     public TeamResponse addTeam(TeamRequest tr){
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        Team team = Team.builder().teamName(tr.getTeam_name()).teamDescription(tr.getTeam_description()).
-                userId(tr.getLeader_id()).teamCreateTime(timestamp).build();
+        Timestamp createTime = new Timestamp(System.currentTimeMillis());
+        Team team = Team.builder().teamName(tr.getTeamName()).teamDescription(tr.getTeamDescription()).
+                userId(tr.getLeaderId()).teamCreateTime(createTime).build();
         Team newTeam = teamRepository.save(team);
-        return TeamResponse.builder().team_id(newTeam.getTeamId()).team_name(newTeam.getTeamName()).
-                team_description(newTeam.getTeamDescription()).leader_id(newTeam.getUserId()).
-                create_time(newTeam.getTeamCreateTime()).build();
+        return TeamResponse.builder().teamId(newTeam.getTeamId()).teamName(newTeam.getTeamName()).
+                teamDescription(newTeam.getTeamDescription()).leaderId(newTeam.getUserId()).
+                createTime(newTeam.getTeamCreateTime()).build();
     }
 
     public TeamResponse deleteTeam(int id){
         Team team = teamRepository.findById(id).get();
         teamRepository.deleteById(id);
-        return TeamResponse.builder().team_id(id).team_name(team.getTeamName()).
-                team_description(team.getTeamDescription()).leader_id(team.getUserId()).build();
+        return TeamResponse.builder().teamId(id).teamName(team.getTeamName()).
+                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).build();
     }
 
     public TeamResponse updateTeam(TeamRequest tr, int id){
         Team team = teamRepository.findById(id).get();
-        team.setTeamName(tr.getTeam_name());
-        team.setTeamDescription(tr.getTeam_description());
-        team.setUserId(tr.getLeader_id());
+        team.setTeamName(tr.getTeamName());
+        team.setTeamDescription(tr.getTeamDescription());
+        team.setUserId(tr.getLeaderId());
         teamRepository.save(team);
-        return TeamResponse.builder().team_id(id).team_name(team.getTeamName()).
-                team_description(team.getTeamDescription()).leader_id(team.getUserId()).build();
+        return TeamResponse.builder().teamId(id).teamName(team.getTeamName()).
+                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).build();
     }
 
     public TeamListResponse getUserTeam(int id) {
@@ -69,8 +69,8 @@ public class TeamService {
 
         List<TeamResponse> teamResponses = new ArrayList<>();
         for (Team team : teams) {
-            teamResponses.add(TeamResponse.builder().team_name(team.getTeamName()).
-                    team_description(team.getTeamDescription()).leader_id(team.getUserId()).build());
+            teamResponses.add(TeamResponse.builder().teamName(team.getTeamName()).
+                    teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).build());
         }
 
         return TeamListResponse.builder().teamResponses(teamResponses).build();

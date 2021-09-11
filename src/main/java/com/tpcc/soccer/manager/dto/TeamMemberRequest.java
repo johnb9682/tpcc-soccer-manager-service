@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class TeamMemberRequest {
-    private int user_id;
-    private int team_id;
+    private int userId;
+    private int teamId;
 }
