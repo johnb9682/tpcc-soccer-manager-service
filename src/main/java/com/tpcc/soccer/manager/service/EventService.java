@@ -28,7 +28,8 @@ public class EventService {
         Event event = eventRepository.findById(id).get();
         return EventResponse.builder().eventName(event.getEventName()).
                 eventDescription(event.getEventDescription()).hostId(event.getUserId()).
-                eventStartTime(event.getEventStartTime()).eventEndTime(event.getEventEndTime()).build();
+                eventStartTime(event.getEventStartTime()).eventEndTime(event.getEventEndTime()).
+                eventLocation(event.getEventLocation()).createTime(event.getEventCreateTime()).build();
     }
 
     public EventResponse addEvent(EventRequest eventRequest){
