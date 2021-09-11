@@ -1,11 +1,7 @@
 package com.tpcc.soccer.manager.dto;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.Builder;
-
-import javax.persistence.Transient;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 @Data
