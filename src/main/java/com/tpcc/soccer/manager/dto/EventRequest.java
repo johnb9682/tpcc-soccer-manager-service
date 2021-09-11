@@ -8,17 +8,13 @@ import java.sql.Timestamp;
 @Data
 public class EventRequest {
     @NotNull
-    private String event_name;
+    private String eventName;
     @NotNull
-    private int host_id;
+    private int hostId;
     @NotNull
-    @jdk.jfr.Timestamp
-    private Timestamp event_start_time;
+    private int eventStartTime;
     @NotNull
-    @jdk.jfr.Timestamp
-    private Timestamp event_end_time;
-    private String event_location;
-    private String event_description;
-//    @NotNull
-//    private Timestamp create_time;
+    private int eventEndTime;
+    private String eventLocation;
+    private String eventDescription;
 }

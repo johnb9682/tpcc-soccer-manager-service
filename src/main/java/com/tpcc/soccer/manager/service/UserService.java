@@ -10,7 +10,10 @@ import org.springframework.util.StringUtils;
 
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Predicate;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +28,8 @@ public class UserService {
     }
 
     public UserResponse addUser(UserRequest request) {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        User user = User.builder().userName(request.getUserName()).email(request.getEmail()).password(request.getPassword()).userCreateTime(timestamp).userLastActiveTime(timestamp).build();
+        Timestamp createTime = new Timestamp(System.currentTimeMillis());
+        User user = User.builder().userName(request.getUserName()).email(request.getEmail()).password(request.getPassword()).userCreateTime(createTime).userLastActiveTime(createTime).build();
         User newUser = userRepository.save(user);
         return UserResponse.builder().userName(newUser.getUserName()).email(newUser.getEmail()).build();
     }

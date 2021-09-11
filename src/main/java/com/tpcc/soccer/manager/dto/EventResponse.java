@@ -3,26 +3,28 @@ package com.tpcc.soccer.manager.dto;
 import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.Builder;
-import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Transient;
+import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @Data
 @Builder
 public class EventResponse {
     @NotNull
-    private String event_name;
+    private String eventName;
     @NotNull
-    private int host_id;
-    @NotNull
-    @jdk.jfr.Timestamp
-    private Timestamp event_start_time;
+    private int hostId;
     @NotNull
     @jdk.jfr.Timestamp
-    private Timestamp event_end_time;
-    private String event_location;
-    private String event_description;
+    @Transient
+    private Timestamp eventStartTime;
     @NotNull
-    private Timestamp create_time;
+    @jdk.jfr.Timestamp
+    @Transient
+    private Timestamp eventEndTime;
+    private String eventLocation;
+    private String eventDescription;
+    @NotNull
+    private Timestamp createTime;
 }

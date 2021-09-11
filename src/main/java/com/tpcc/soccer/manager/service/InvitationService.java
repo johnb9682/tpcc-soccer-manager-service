@@ -35,9 +35,9 @@ public class InvitationService {
     }
 
     public InvitationResponse addInvitation(InvitationRequest ir){
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Timestamp createTime = new Timestamp(System.currentTimeMillis());
         Invitation invitation = Invitation.builder().type(ir.getType()).senderId(ir.getSenderId()).
-                receiverId(ir.getReceiverId()).status(0).createTime(timestamp).build();
+                receiverId(ir.getReceiverId()).status(0).createTime(createTime).build();
         Invitation newInvitation = invitationRepository.save(invitation);
         return InvitationResponse.builder().invitation_id(newInvitation.getInvitationId()).
                 type(newInvitation.getType()).senderId(newInvitation.getSenderId()).

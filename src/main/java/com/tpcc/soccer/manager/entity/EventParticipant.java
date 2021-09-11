@@ -1,14 +1,14 @@
 package com.tpcc.soccer.manager.entity;
 
 import com.sun.istack.NotNull;
-import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Data
@@ -37,7 +37,7 @@ public class EventParticipant {
     private Boolean isHost;
     @Column(name = "create_time")
     @NotNull
-    @Transient
     @jdk.jfr.Timestamp
+    @Transient
     private Timestamp eventParticipantCreateTime;
 }
