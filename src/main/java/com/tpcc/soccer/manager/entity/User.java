@@ -33,12 +33,10 @@ public class User {
     private String password;
     @Column(name = "create_time")
     @NotNull
-    @Transient
     @jdk.jfr.Timestamp
     private Timestamp userCreateTime;
     @Column(name = "last_active")
     @NotNull
-    @Transient
     @jdk.jfr.Timestamp
     private Timestamp userLastActiveTime;
 

@@ -29,7 +29,7 @@ public class UserService {
     }
 
     public UserResponse addUser(UserRequest request) {
-        Timestamp createTime = new Timestamp(System.currentTimeMillis());
+        Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
         User user = User.builder().userName(request.getUserName()).email(request.getEmail()).password(request.getPassword()).userCreateTime(createTime).userLastActiveTime(createTime).build();
         User newUser = userRepository.save(user);
         return UserResponse.builder().userName(newUser.getUserName()).email(newUser.getEmail()).build();

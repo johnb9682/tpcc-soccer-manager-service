@@ -38,6 +38,5 @@ public class EventParticipant {
     @Column(name = "create_time")
     @NotNull
     @jdk.jfr.Timestamp
-    @Transient
     private Timestamp eventParticipantCreateTime;
 }

@@ -32,7 +32,7 @@ public class TeamService {
     }
 
     public TeamResponse addTeam(TeamRequest tr){
-        Timestamp createTime = new Timestamp(System.currentTimeMillis());
+        Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
         Team team = Team.builder().teamName(tr.getTeamName()).teamDescription(tr.getTeamDescription()).
                 userId(tr.getLeaderId()).teamCreateTime(createTime).build();
         Team newTeam = teamRepository.save(team);

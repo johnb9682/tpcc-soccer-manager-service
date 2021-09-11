@@ -42,11 +42,9 @@ public class Invitation {
     private Integer status; // 0 is pending; -1 is rejected; 1 is accepted;
     @Column(name = "create_time")
     @NotNull
-    @Transient
     @jdk.jfr.Timestamp
     private Timestamp createTime;
     @Column(name = "response_time")
-    @Transient
     @jdk.jfr.Timestamp
     private Timestamp responseTime;
 }
