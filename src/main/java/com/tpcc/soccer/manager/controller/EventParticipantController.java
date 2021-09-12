@@ -1,6 +1,7 @@
 package com.tpcc.soccer.manager.controller;
 
 import com.tpcc.soccer.manager.dto.*;
+import com.tpcc.soccer.manager.exceptions.HostException;
 import com.tpcc.soccer.manager.service.EventParticipantService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,11 @@ public class EventParticipantController {
     @RequestMapping(method=RequestMethod.GET, value="/eventParticipant")
     public ResponseEntity<ParticipantListResponse> getEventParticipants (@RequestHeader("eventId") int id) {
         return new ResponseEntity<>(eventParticipantService.getParticipant(id), HttpStatus.OK);
+    }
+
+    public ResponseEntity<EventParticipantResponse> deleteParticipant (@RequestHeader("userId") int userId,
+                                                                       @RequestHeader("eventId") int eventId) throws HostException {
+        return new ResponseEntity<>(eventParticipantService.deleteParticipant(userId, eventId), HttpStatus.OK);
     }
 
 }

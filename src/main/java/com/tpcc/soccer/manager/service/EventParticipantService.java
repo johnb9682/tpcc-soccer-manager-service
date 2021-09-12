@@ -2,10 +2,14 @@ package com.tpcc.soccer.manager.service;
 
 import com.tpcc.soccer.manager.dao.EventParticipantRepository;
 import com.tpcc.soccer.manager.dao.UserRepository;
+import com.tpcc.soccer.manager.dto.EventParticipantResponse;
 import com.tpcc.soccer.manager.dto.ParticipantListResponse;
 import com.tpcc.soccer.manager.dto.UserResponseWithId;
+import com.tpcc.soccer.manager.entity.Event;
 import com.tpcc.soccer.manager.entity.EventParticipant;
+import com.tpcc.soccer.manager.entity.EventParticipantCompositeKey;
 import com.tpcc.soccer.manager.entity.User;
+import com.tpcc.soccer.manager.exceptions.HostException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +40,31 @@ public class EventParticipantService {
         }
 
         return ParticipantListResponse.builder().userResponses(userResponses).build();
+    }
+
+    public EventParticipantResponse deleteParticipant (int userId, int eventId) throws HostException {
+        List<EventParticipant> participants = (List<EventParticipant>) eventParticipantRepository.findAll();
+        int id = -1;
+        EventParticipant participant = new EventParticipant();
+        for (EventParticipant ep: participants) {
+            if (ep.getUserId() == userId && ep.getEventId() == eventId) {
+                if (ep.getIsHost()) {
+                    throw new HostException();
+                }
+                id = ep.getEventParticipantId();
+                participant = ep;
+                break;
+            }
+        }
+
+        if (id == -1) return null;
+
+        EventParticipantCompositeKey ck = new EventParticipantCompositeKey();
+        ck.setEventId(eventId);
+        ck.setEventParticipantId(id);
+        ck.setUserId(userId);
+        eventParticipantRepository.deleteById(ck);
+        return EventParticipantResponse.builder().eventParticipantId(participant.getEventParticipantId()).
+                userId(participant.getUserId()).eventId(participant.getEventId()).isHost(participant.getIsHost()).build();
     }
 }
