@@ -15,4 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class EventParticipantController {
     @Autowired
     private EventParticipantService eventParticipantService;
+
+    @CrossOrigin
+    @RequestMapping(method=RequestMethod.GET, value="/eventParticipant")
+    public ResponseEntity<ParticipantListResponse> getEventParticipants (@RequestHeader("eventId") int id) {
+        return new ResponseEntity<>(eventParticipantService.getParticipant(id), HttpStatus.OK);
+    }
+
 }

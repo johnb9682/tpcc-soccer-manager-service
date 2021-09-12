@@ -40,7 +40,6 @@ public class TeamMember {
     private Boolean isManager;
     @Column(name = "create_time")
     @NotNull
-    @Transient
     @jdk.jfr.Timestamp
     private Timestamp teamMemberCreateTime;
 }

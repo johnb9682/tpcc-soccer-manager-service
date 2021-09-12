@@ -7,6 +7,7 @@ import com.tpcc.soccer.manager.dto.MemberListResponse;
 import com.tpcc.soccer.manager.dto.TeamMemberResponse;
 import com.tpcc.soccer.manager.dto.UserResponse;
 import com.tpcc.soccer.manager.dto.UserResponseWithId;
+import com.tpcc.soccer.manager.entity.TeamMemberCompositeKey;
 import com.tpcc.soccer.manager.entity.User;
 import com.tpcc.soccer.manager.exceptions.LeaderException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +56,7 @@ public class TeamMemberService {
         if (id == -1) {
             return null;
         }
-        teamMemberRepository.deleteById(id);
-        return TeamMemberResponse.builder().teamMember_id(member.getTeamMemberId()).user_id(member.getUserId()).team_id(member.getTeamId()).is_leader(member.getIsLeader()).is_manager(member.getIsManager()).build();
+        return TeamMemberResponse.builder().teamMemberId(member.getTeamMemberId()).userId(member.getUserId()).teamId(member.getTeamId()).isLeader(member.getIsLeader()).isManager(member.getIsManager()).build();
     }
 
 

@@ -35,9 +35,9 @@ public class InvitationService {
     }
 
     public InvitationResponse addInvitation(InvitationRequest ir){
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
         Invitation invitation = Invitation.builder().type(ir.getType()).senderId(ir.getSenderId()).
-                receiverId(ir.getReceiverId()).status(0).createTime(timestamp).build();
+                receiverId(ir.getReceiverId()).status(0).createTime(createTime).build();
         Invitation newInvitation = invitationRepository.save(invitation);
         return InvitationResponse.builder().invitation_id(newInvitation.getInvitationId()).
                 type(newInvitation.getType()).senderId(newInvitation.getSenderId()).
@@ -87,8 +87,10 @@ public class InvitationService {
     }
 
     public InvitationResponse updateInvitation(UpdateInvitationRequest request) {
+        Timestamp responseTime = new Timestamp(request.getResponseTime());
         Invitation invitationToUpdate = invitationRepository.findById(request.getInvitationId()).get();
         invitationToUpdate.setStatus(request.getStatus());
+        invitationToUpdate.setResponseTime(responseTime);
         invitationRepository.save(invitationToUpdate);
         return InvitationResponse.builder().type(invitationToUpdate.getType()).teamId(invitationToUpdate.getTeamId()).
                 senderId(invitationToUpdate.getSenderId()).receiverId(invitationToUpdate.getReceiverId()).

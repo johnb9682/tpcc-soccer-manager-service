@@ -14,7 +14,4 @@ public class VerifyLoginResponse extends APIErrorResponse {
     private Integer userId;
     private String userName;
     private String email;
-    @Transient
-    @jdk.jfr.Timestamp
-    private Timestamp lastActive;
 }

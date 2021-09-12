@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -26,16 +28,15 @@ public class Event {
     @NotNull
     private String eventName;
     @Column(name = "event_start_time")
-    @Transient
     @NotNull
     @jdk.jfr.Timestamp
     private Timestamp eventStartTime;
     @Column(name = "event_end_time")
-    @Transient
     @NotNull
     @jdk.jfr.Timestamp
     private Timestamp eventEndTime;
     @Column(name = "event_location")
+    @NotNull
     private String eventLocation;
     @Column(name = "event_description")
     private String eventDescription;
@@ -44,7 +45,6 @@ public class Event {
     private Integer userId;
     @Column(name = "create_time")
     @NotNull
-    @Transient
     @jdk.jfr.Timestamp
     private Timestamp eventCreateTime;
 }

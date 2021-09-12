@@ -10,7 +10,4 @@ import java.sql.Time;
 public class LoginRequest {
     private String email;
     private String password;
-    @Timestamp
-    @Transient
-    private Timestamp lastActive;
 }

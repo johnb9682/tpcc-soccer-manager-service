@@ -9,15 +9,9 @@ import java.sql.Timestamp;
 @Data
 @Builder
 public class TeamResponse {
-    @NotNull
-    private int team_id;
-    @NotNull
-    private String team_description;
-    @NotNull
-    private String team_name;
-    @NotNull
-    private int leader_id;
-    @NotNull
-    @jdk.jfr.Timestamp
-    private Timestamp create_time;
+    private int teamId;
+    private String teamDescription;
+    private String teamName;
+    private int leaderId;
+    private Timestamp createTime;
 }
