@@ -1,14 +1,15 @@
 package com.tpcc.soccer.manager.entity;
 
 import com.sun.istack.NotNull;
-import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity // This tells Hibernate to make a table out of this class
 @Data
@@ -41,6 +42,5 @@ public class TeamMember {
     @Column(name = "create_time")
     @NotNull
     @jdk.jfr.Timestamp
-    @Transient
     private Timestamp CreateTime;
 }
