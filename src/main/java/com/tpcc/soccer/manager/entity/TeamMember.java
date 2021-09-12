@@ -41,5 +41,6 @@ public class TeamMember {
     @Column(name = "create_time")
     @NotNull
     @jdk.jfr.Timestamp
-    private Timestamp teamMemberCreateTime;
+    @Transient
+    private Timestamp CreateTime;
 }
