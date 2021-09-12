@@ -56,6 +56,11 @@ public class TeamMemberService {
         if (id == -1) {
             return null;
         }
+        TeamMemberCompositeKey ck = new TeamMemberCompositeKey();
+        ck.setTeamId(teamId);
+        ck.setTeamMemberId(id);
+        ck.setUserId(userId);
+        teamMemberRepository.deleteById(ck);
         return TeamMemberResponse.builder().teamMemberId(member.getTeamMemberId()).userId(member.getUserId()).teamId(member.getTeamId()).isLeader(member.getIsLeader()).isManager(member.getIsManager()).build();
     }
 
