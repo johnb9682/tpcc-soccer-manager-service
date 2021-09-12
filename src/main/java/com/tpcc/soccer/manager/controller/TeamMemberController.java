@@ -3,6 +3,7 @@ package com.tpcc.soccer.manager.controller;
 
 import com.tpcc.soccer.manager.dto.MemberListResponse;
 import com.tpcc.soccer.manager.dto.TeamMemberResponse;
+import com.tpcc.soccer.manager.exceptions.LeaderException;
 import com.tpcc.soccer.manager.service.TeamMemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class TeamMemberController {
     @CrossOrigin
     @RequestMapping(method=RequestMethod.DELETE, value="/teamMember")
     public ResponseEntity<TeamMemberResponse> deleteMember(@RequestHeader("userId") int userId,
-                                                           @RequestHeader("teamId") int teamId) {
+                                                           @RequestHeader("teamId") int teamId) throws LeaderException {
         return new ResponseEntity<>(teamMemberService.deleteMemberFromTeam(userId, teamId), HttpStatus.OK);
     }
 }
