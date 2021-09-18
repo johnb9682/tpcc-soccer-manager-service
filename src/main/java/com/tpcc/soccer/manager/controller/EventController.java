@@ -33,7 +33,8 @@ public class EventController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/event")
-    public ResponseEntity<EventResponse> addEvent(@RequestBody EventRequest eventRequest) {
+    public ResponseEntity<EventResponse> addEvent(@RequestBody EventRequest eventRequest,
+                                                  @RequestBody EventParticipantRequest eventParticipantRequest) {
         return new ResponseEntity<>(eventService.addEvent(eventRequest), HttpStatus.OK);
     }
 
