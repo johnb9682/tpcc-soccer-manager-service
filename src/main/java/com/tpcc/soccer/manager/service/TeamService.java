@@ -28,7 +28,8 @@ public class TeamService {
     public TeamResponse getTeam(int id){
         Team team = teamRepository.findById(id).get();
         return TeamResponse.builder().teamId(id).teamName(team.getTeamName()).
-                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).build();
+                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).
+                createTime(team.getTeamCreateTime()).build();
     }
 
     public TeamResponse addTeam(TeamRequest tr){
