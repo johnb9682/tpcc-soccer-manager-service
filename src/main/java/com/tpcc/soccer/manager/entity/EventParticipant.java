@@ -33,7 +33,7 @@ public class EventParticipant {
     private Integer eventId;
     @Column(name = "is_host")
     @NotNull
-    private Boolean isHost;
+    private Integer isHost;
     @Column(name = "create_time")
     @NotNull
     @jdk.jfr.Timestamp
