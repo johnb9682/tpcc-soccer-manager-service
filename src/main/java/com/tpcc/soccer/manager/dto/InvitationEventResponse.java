@@ -9,10 +9,9 @@ import java.sql.Timestamp;
 
 @Data
 @Builder
-public class InvitationResponse
+public class InvitationEventResponse
 {
     private int invitation_id;
-    private int teamId;
     private int eventId;
     private int senderId;
     private int receiverId;

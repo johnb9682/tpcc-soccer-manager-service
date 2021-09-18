@@ -9,11 +9,10 @@ import java.sql.Timestamp;
 
 @Data
 @Builder
-public class InvitationResponse
+public class InvitationTeamResponse
 {
     private int invitation_id;
     private int teamId;
-    private int eventId;
     private int senderId;
     private int receiverId;
     private int status; // 0 is pending; -1 is rejected; 1 is accepted;

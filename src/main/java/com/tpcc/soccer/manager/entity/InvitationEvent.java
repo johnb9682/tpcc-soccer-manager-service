@@ -15,17 +15,12 @@ import java.sql.Timestamp;
 @Table(name = "invitation")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Invitation {
+public class InvitationEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_invitation")
+    @Column(name = "id_invitation_event")
     @NotNull
     private Integer invitationId;
-    @Column(name = "type")
-    @NotNull
-    private String type; // invitation type can be either 'team' or 'event';
-    @Column(name = "team")
-    private Integer teamId;
     @Column(name = "event")
     private Integer eventId;
     @Column(name = "sender")
