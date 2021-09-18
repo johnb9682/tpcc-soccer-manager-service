@@ -7,6 +7,7 @@ import com.tpcc.soccer.manager.dto.TeamListResponse;
 import com.tpcc.soccer.manager.dto.TeamMemberResponse;
 import com.tpcc.soccer.manager.dto.TeamRequest;
 import com.tpcc.soccer.manager.dto.TeamResponse;
+import com.tpcc.soccer.manager.entity.EventParticipant;
 import com.tpcc.soccer.manager.entity.Team;
 import com.tpcc.soccer.manager.entity.TeamMember;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,19 @@ public class TeamService {
         Team team = Team.builder().teamName(tr.getTeamName()).teamDescription(tr.getTeamDescription()).
                 userId(tr.getLeaderId()).teamCreateTime(createTime).build();
         Team newTeam = teamRepository.save(team);
+        return TeamResponse.builder().teamId(newTeam.getTeamId()).teamName(newTeam.getTeamName()).
+                teamDescription(newTeam.getTeamDescription()).leaderId(newTeam.getUserId()).
+                createTime(newTeam.getTeamCreateTime()).build();
+    }
+
+    public TeamResponse addTeamTest(TeamRequest tr){
+        Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
+        Team team = Team.builder().teamName(tr.getTeamName()).teamDescription(tr.getTeamDescription()).
+                userId(tr.getLeaderId()).teamCreateTime(createTime).build();
+        Team newTeam = teamRepository.save(team);
+        TeamMember teamMember = TeamMember.builder().teamId(newTeam.getTeamId()).
+                CreateTime(createTime).userId(newTeam.getUserId()).isLeader(1).isManager(1).build();
+        TeamMember newTeamMember = teamMemberRepository.save(teamMember);
         return TeamResponse.builder().teamId(newTeam.getTeamId()).teamName(newTeam.getTeamName()).
                 teamDescription(newTeam.getTeamDescription()).leaderId(newTeam.getUserId()).
                 createTime(newTeam.getTeamCreateTime()).build();

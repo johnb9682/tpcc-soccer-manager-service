@@ -47,7 +47,7 @@ public class TeamMemberService {
         TeamMember member = new TeamMember();
         for (TeamMember tm: members){
             if (tm.getUserId() == userId && tm.getTeamId() == teamId) {
-                if (tm.getIsLeader()){
+                if (tm.getIsLeader() == 1){
                     throw new LeaderException();
                 }
                 id = tm.getTeamMemberId();
@@ -66,7 +66,7 @@ public class TeamMemberService {
         return TeamMemberResponse.builder().teamMemberId(member.getTeamMemberId()).userId(member.getUserId()).teamId(member.getTeamId()).isLeader(member.getIsLeader()).isManager(member.getIsManager()).build();
     }
 
-    public TeamMemberResponse addTeamMember(int userId, int teamId, boolean isLeader, boolean isManager) {
+    public TeamMemberResponse addTeamMember(int userId, int teamId, int isLeader, int isManager) {
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
         TeamMember tm = TeamMember.builder().CreateTime(createTime).isLeader(isLeader).isManager(isManager).teamId(teamId).userId(userId).build();
         TeamMember result = teamMemberRepository.save(tm);

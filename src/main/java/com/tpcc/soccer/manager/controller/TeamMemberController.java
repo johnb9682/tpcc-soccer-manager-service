@@ -35,7 +35,7 @@ public class TeamMemberController {
     @CrossOrigin
     @RequestMapping(method=RequestMethod.POST, value="/teamMember")
     public ResponseEntity<TeamMemberResponse> addMember(@RequestHeader("userId") int userId, @RequestHeader("teamId") int teamId,
-                                                       @RequestHeader("isLeader") boolean isLeader, @RequestHeader("isManager") boolean isManager) {
+                                                       @RequestHeader("isLeader") int isLeader, @RequestHeader("isManager") int isManager) {
         return new ResponseEntity<>(teamMemberService.addTeamMember(userId, teamId, isLeader, isManager), HttpStatus.OK);
     }
 }

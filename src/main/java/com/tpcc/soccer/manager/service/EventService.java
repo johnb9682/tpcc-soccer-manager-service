@@ -39,9 +39,6 @@ public class EventService {
                 eventLocation(eventRequest.getEventLocation()).
                 eventDescription(eventRequest.getEventDescription()).eventCreateTime(createTime).build();
         Event newEvent = eventRepository.save(event);
-        EventParticipant eventParticipant = EventParticipant.builder().eventId(newEvent.getEventId()).
-                eventParticipantCreateTime(createTime).userId(newEvent.getUserId()).isHost(1).build();
-        EventParticipant newEventParticipant = eventParticipantRepository.save(eventParticipant);
         return EventResponse.builder().eventName(newEvent.getEventName()).
                 eventDescription(newEvent.getEventDescription()).eventStartTime(newEvent.getEventStartTime()).
                 eventEndTime(newEvent.getEventEndTime()).eventLocation(newEvent.getEventLocation()).
