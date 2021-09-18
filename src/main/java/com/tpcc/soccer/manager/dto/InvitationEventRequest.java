@@ -8,11 +8,9 @@ import java.sql.Timestamp;
 
 @Data
 public class InvitationEventRequest {
-    private int invitationId;
     private int eventId;
     private int senderId;
     private int receiverId;
     private int status; // 0 is pending; -1 is rejected; 1 is accepted;
-    private int createTime;
     private int responseTime;
 }
