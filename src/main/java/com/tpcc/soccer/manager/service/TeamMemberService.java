@@ -13,6 +13,8 @@ import com.tpcc.soccer.manager.exceptions.LeaderException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.tpcc.soccer.manager.entity.TeamMember;
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,6 +64,13 @@ public class TeamMemberService {
         ck.setUserId(userId);
         teamMemberRepository.deleteById(ck);
         return TeamMemberResponse.builder().teamMemberId(member.getTeamMemberId()).userId(member.getUserId()).teamId(member.getTeamId()).isLeader(member.getIsLeader()).isManager(member.getIsManager()).build();
+    }
+
+    public TeamMemberResponse addTeamMember(int userId, int teamId, boolean isLeader, boolean isManager) {
+        Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
+        TeamMember tm = TeamMember.builder().CreateTime(createTime).isLeader(isLeader).isManager(isManager).teamId(teamId).userId(userId).build();
+        TeamMember result = teamMemberRepository.save(tm);
+        return TeamMemberResponse.builder().isLeader(isLeader).isManager(isManager).teamId(teamId).userId(userId).teamMemberId(result.getTeamMemberId()).build();
     }
 
 
