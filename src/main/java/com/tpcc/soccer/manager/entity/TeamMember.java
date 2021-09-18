@@ -35,10 +35,10 @@ public class TeamMember {
     private Integer teamId;
     @Column(name = "is_leader")
     @NotNull
-    private Boolean isLeader;
+    private Integer isLeader;
     @Column(name = "is_manager")
     @NotNull
-    private Boolean isManager;
+    private Integer isManager;
     @Column(name = "create_time")
     @NotNull
     @jdk.jfr.Timestamp

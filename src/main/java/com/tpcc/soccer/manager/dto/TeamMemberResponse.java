@@ -9,6 +9,6 @@ public class TeamMemberResponse {
     private int teamMemberId;
     private int userId;
     private int teamId;
-    private boolean isLeader;
-    private boolean isManager;
+    private int isLeader;
+    private int isManager;
 }

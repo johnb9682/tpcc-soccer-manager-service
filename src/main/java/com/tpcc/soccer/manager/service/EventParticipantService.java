@@ -68,8 +68,8 @@ public class EventParticipantService {
 
     public EventParticipantResponse addEventParticipant(int userId, int eventId, int isHost) {
         Timestamp createTime = new Timestamp((System.currentTimeMillis() / 1000) * 1000L);
-        EventParticipant eventParticipant = EventParticipant.builder().eventParticipantCreateTime(createTime).isHost(1).eventId(eventId).userId(userId).build();
+        EventParticipant eventParticipant = EventParticipant.builder().eventParticipantCreateTime(createTime).isHost(isHost).eventId(eventId).userId(userId).build();
         EventParticipant result = eventParticipantRepository.save(eventParticipant);
-        return EventParticipantResponse.builder().isHost(1).eventId(eventId).userId(userId).eventParticipantId(result.getEventParticipantId()).build();
+        return EventParticipantResponse.builder().isHost(isHost).eventId(eventId).userId(userId).eventParticipantId(result.getEventParticipantId()).build();
     }
 }
