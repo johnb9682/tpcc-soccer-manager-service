@@ -48,7 +48,7 @@ public class EventParticipantService {
         EventParticipant participant = new EventParticipant();
         for (EventParticipant ep: participants) {
             if (ep.getUserId() == userId && ep.getEventId() == eventId) {
-                if (ep.getIsHost()) {
+                if (ep.getIsHost() == 1) {
                     throw new HostException();
                 }
                 id = ep.getEventParticipantId();

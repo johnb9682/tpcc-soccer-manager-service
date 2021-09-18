@@ -9,5 +9,5 @@ public class EventParticipantResponse {
     private int eventParticipantId;
     private int userId;
     private int eventId;
-    private boolean isHost;
+    private int isHost;
 }
