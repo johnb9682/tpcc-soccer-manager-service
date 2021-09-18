@@ -1,6 +1,7 @@
 package com.tpcc.soccer.manager.controller;
 
 import com.tpcc.soccer.manager.dto.*;
+import com.tpcc.soccer.manager.service.EventParticipantService;
 import com.tpcc.soccer.manager.service.EventService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import java.util.List;
 public class EventController {
     @Autowired
     private EventService eventService;
+    @Autowired
+    private EventParticipantService eventParticipantService;
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/event")
@@ -33,9 +36,11 @@ public class EventController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/event")
-    public ResponseEntity<EventResponse> addEvent(@RequestBody EventRequest eventRequest,
-                                                  EventParticipantRequest eventParticipantRequest) {
-        return new ResponseEntity<>(eventService.addEvent(eventRequest, eventParticipantRequest), HttpStatus.OK);
+    public ResponseEntity<EventResponse> addEvent(@RequestBody EventRequest eventRequest) {
+        EventResponse response = eventService.addEvent(eventRequest);
+        int id = response.getEventId();
+        eventParticipantService.addEventParticipant(eventRequest.getHostId(), id, 1);
+        return new ResponseEntity<>(eventService.addEvent(eventRequest), HttpStatus.OK);
     }
 
     @CrossOrigin

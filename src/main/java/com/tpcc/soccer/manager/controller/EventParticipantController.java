@@ -28,4 +28,10 @@ public class EventParticipantController {
         return new ResponseEntity<>(eventParticipantService.deleteParticipant(userId, eventId), HttpStatus.OK);
     }
 
+    @CrossOrigin
+    @RequestMapping(method=RequestMethod.POST, value="/eventParticipant")
+    public ResponseEntity<EventParticipantResponse> addMember(@RequestHeader("userId") int userId, @RequestHeader("teamId") int teamId,
+                                                        @RequestHeader("isHost") int isHost) {
+        return new ResponseEntity<>(eventParticipantService.addEventParticipant(userId, teamId, isHost), HttpStatus.OK);
+    }
 }

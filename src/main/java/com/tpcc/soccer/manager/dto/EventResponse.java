@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 @Data
 @Builder
 public class EventResponse {
+    private int eventId;
     private String eventName;
     private int hostId;
     private Timestamp eventStartTime;

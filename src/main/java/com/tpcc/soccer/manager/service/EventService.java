@@ -30,7 +30,7 @@ public class EventService {
                 eventLocation(event.getEventLocation()).createTime(event.getEventCreateTime()).build();
     }
 
-    public EventResponse addEvent(EventRequest eventRequest, EventParticipantRequest eventParticipantRequest){
+    public EventResponse addEvent(EventRequest eventRequest){
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
         Timestamp eventStartTime = new Timestamp(eventRequest.getEventStartTime()* 1000L);
         Timestamp eventEndTime = new Timestamp(eventRequest.getEventStartTime()* 1000L);
