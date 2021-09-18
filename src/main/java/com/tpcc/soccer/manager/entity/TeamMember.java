@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
 import javax.persistence.*;
@@ -40,7 +39,6 @@ public class TeamMember {
     @NotNull
     private Integer isManager;
     @Column(name = "create_time")
-    @NotNull
     @jdk.jfr.Timestamp
-    private Timestamp CreateTime;
+    private Timestamp createTime;
 }

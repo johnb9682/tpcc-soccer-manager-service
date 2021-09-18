@@ -48,12 +48,13 @@ public class TeamService {
         Team team = Team.builder().teamName(tr.getTeamName()).teamDescription(tr.getTeamDescription()).
                 userId(tr.getLeaderId()).teamCreateTime(createTime).build();
         Team newTeam = teamRepository.save(team);
-        TeamMember teamMember = TeamMember.builder().teamId(newTeam.getTeamId()).
-                CreateTime(createTime).userId(newTeam.getUserId()).isLeader(1).isManager(1).build();
+        TeamMember teamMember = TeamMember.builder().teamId(team.getTeamId()).
+                createTime(createTime).userId(newTeam.getUserId()).isLeader(1).isManager(0).build();
         TeamMember newTeamMember = teamMemberRepository.save(teamMember);
-        return TeamResponse.builder().teamId(newTeam.getTeamId()).teamName(newTeam.getTeamName()).
+        TeamResponse rp = TeamResponse.builder().teamId(newTeam.getTeamId()).teamName(newTeam.getTeamName()).
                 teamDescription(newTeam.getTeamDescription()).leaderId(newTeam.getUserId()).
                 createTime(newTeam.getTeamCreateTime()).build();
+        return rp;
     }
 
     public TeamResponse deleteTeam(int id){
