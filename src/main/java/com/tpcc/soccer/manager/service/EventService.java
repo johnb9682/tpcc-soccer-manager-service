@@ -2,9 +2,7 @@ package com.tpcc.soccer.manager.service;
 
 import com.tpcc.soccer.manager.dao.EventParticipantRepository;
 import com.tpcc.soccer.manager.dao.EventRepository;
-import com.tpcc.soccer.manager.dto.EventListResponse;
-import com.tpcc.soccer.manager.dto.EventRequest;
-import com.tpcc.soccer.manager.dto.EventResponse;
+import com.tpcc.soccer.manager.dto.*;
 import com.tpcc.soccer.manager.entity.Event;
 import com.tpcc.soccer.manager.entity.EventParticipant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +30,7 @@ public class EventService {
                 eventLocation(event.getEventLocation()).createTime(event.getEventCreateTime()).build();
     }
 
-    public EventResponse addEvent(EventRequest eventRequest){
+    public EventResponse addEvent(EventRequest eventRequest, EventParticipantRequest eventParticipantRequest){
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
         Timestamp eventStartTime = new Timestamp(eventRequest.getEventStartTime()* 1000L);
         Timestamp eventEndTime = new Timestamp(eventRequest.getEventStartTime()* 1000L);
@@ -41,6 +39,9 @@ public class EventService {
                 eventLocation(eventRequest.getEventLocation()).
                 eventDescription(eventRequest.getEventDescription()).eventCreateTime(createTime).build();
         Event newEvent = eventRepository.save(event);
+        EventParticipant eventParticipant = EventParticipant.builder().eventId(newEvent.getEventId()).
+                eventParticipantCreateTime(createTime).userId(newEvent.getUserId()).isHost(1).build();
+        EventParticipant newEventParticipant = eventParticipantRepository.save(eventParticipant);
         return EventResponse.builder().eventName(newEvent.getEventName()).
                 eventDescription(newEvent.getEventDescription()).eventStartTime(newEvent.getEventStartTime()).
                 eventEndTime(newEvent.getEventEndTime()).eventLocation(newEvent.getEventLocation()).
