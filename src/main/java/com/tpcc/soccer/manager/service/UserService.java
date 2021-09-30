@@ -32,13 +32,13 @@ public class UserService {
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
         User user = User.builder().userName(request.getUserName()).email(request.getEmail()).password(request.getPassword()).userCreateTime(createTime).userLastActiveTime(createTime).build();
         User newUser = userRepository.save(user);
-        return UserResponse.builder().userName(newUser.getUserName()).email(newUser.getEmail()).build();
+        return UserResponse.builder().userName(newUser.getUserName()).email(newUser.getEmail()).userLastActiveTime(newUser.getUserLastActiveTime()).userCreateTime(newUser.getUserCreateTime()).build();
     }
 
     public UserResponse deleteUser(Integer id) {
         User userToDelete = userRepository.findById(id).get();
         userRepository.deleteById(id);
-        return UserResponse.builder().userName(userToDelete.getUserName()).email(userToDelete.getEmail()).build();
+        return UserResponse.builder().userName(userToDelete.getUserName()).email(userToDelete.getEmail()).userLastActiveTime(userToDelete.getUserLastActiveTime()).userCreateTime(userToDelete.getUserCreateTime()).build();
     }
 
     public UserResponse updateUser(UserRequestWithoutPw request, Integer id) {
@@ -91,7 +91,7 @@ public class UserService {
         Timestamp timestamp = new Timestamp((System.currentTimeMillis()));
         activeUser.setUserLastActiveTime(timestamp);
         userRepository.save(activeUser);
-        return UserResponse.builder().lastActive(activeUser.getUserLastActiveTime()).build();
+        return UserResponse.builder().userLastActiveTime(activeUser.getUserLastActiveTime()).build();
     }
 
     public UserListResponse searchUser(String name) {

@@ -11,11 +11,10 @@ import java.sql.Timestamp;
 public class UserResponse {
     private String userName;
     private String email;
-    private String password;
     @jdk.jfr.Timestamp
     @Transient
-    private Timestamp lastActive;
+    private Timestamp userLastActiveTime;
     @jdk.jfr.Timestamp
     @Transient
-    private Timestamp createTime;
+    private Timestamp userCreateTime;
 }
