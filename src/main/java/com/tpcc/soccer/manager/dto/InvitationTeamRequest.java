@@ -11,6 +11,4 @@ public class InvitationTeamRequest {
     private int teamId;
     private int senderId;
     private int receiverId;
-    private int status; // 0 is pending; -1 is rejected; 1 is accepted;
-    private int responseTime;
 }
