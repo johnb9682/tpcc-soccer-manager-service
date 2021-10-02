@@ -86,12 +86,12 @@ public class UserService {
         return verifyLoginResponse;
     }
 
-    public UserResponse activeUser(UpdateUserRequest request, Integer id) {
+    public UserActiveResponse activeUser(Integer id) {
         User activeUser = userRepository.findById(id).get();
         Timestamp timestamp = new Timestamp((System.currentTimeMillis()));
         activeUser.setUserLastActiveTime(timestamp);
         userRepository.save(activeUser);
-        return UserResponse.builder().userLastActiveTime(activeUser.getUserLastActiveTime()).build();
+        return UserActiveResponse.builder().userLastActiveTime(activeUser.getUserLastActiveTime()).build();
     }
 
     public UserListResponse searchUser(String name) {

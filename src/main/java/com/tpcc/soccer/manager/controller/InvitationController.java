@@ -31,13 +31,13 @@ public class InvitationController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteTeamInvitation")
-    public ResponseEntity<InvitationTeamResponse> deleteTeamInvitation(@RequestHeader("invitationId") int id) {
+    public ResponseEntity<InvitationTeamResponse> deleteTeamInvitation(@RequestHeader("invitationTeamId") int id) {
         return new ResponseEntity<>(invitationService.deleteTeamInvitation(id), HttpStatus.OK);
     }
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.DELETE, value = "/deleteEventInvitation")
-    public ResponseEntity<InvitationEventResponse> deleteEventInvitation(@RequestHeader("invitationId") int id) {
+    public ResponseEntity<InvitationEventResponse> deleteEventInvitation(@RequestHeader("invitationEventId") int id) {
         return new ResponseEntity<>(invitationService.deleteEventInvitation(id), HttpStatus.OK);
     }
 
@@ -55,12 +55,12 @@ public class InvitationController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/getUserTeamInvitation")
-    public ResponseEntity<InvitationListResponse> getUserTeamInvitation(@RequestHeader("invitationId") int id) {
+    public ResponseEntity<InvitationListResponse> getUserTeamInvitation(@RequestHeader("userId") int id) {
         return new ResponseEntity<>(invitationService.getUserTeamInvitation(id), HttpStatus.OK);
     }
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/getUserEventInvitation")
-    public ResponseEntity<InvitationListResponse> getUserEventInvitation(@RequestHeader("invitationId") int id) {
+    public ResponseEntity<InvitationListResponse> getUserEventInvitation(@RequestHeader("userId") int id) {
         return new ResponseEntity<>(invitationService.getUserEventInvitation(id), HttpStatus.OK);
     }
 

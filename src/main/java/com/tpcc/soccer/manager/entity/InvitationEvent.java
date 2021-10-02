@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @Entity // This tells Hibernate to make a table out of this class
 @Data
 @Builder
-@Table(name = "invitation")
+@Table(name = "invitation_event")
 @NoArgsConstructor
 @AllArgsConstructor
 public class InvitationEvent {

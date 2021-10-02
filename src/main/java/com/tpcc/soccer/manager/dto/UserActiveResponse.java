@@ -8,11 +8,7 @@ import java.sql.Timestamp;
 
 @Data
 @Builder
-public class UserResponse {
-    private String userName;
-    private String email;
+public class UserActiveResponse {
     @jdk.jfr.Timestamp
     private Timestamp userLastActiveTime;
-    @jdk.jfr.Timestamp
-    private Timestamp userCreateTime;
 }

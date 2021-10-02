@@ -68,7 +68,8 @@ public class TeamMemberService {
 
     public TeamMemberResponse addTeamMember(int userId, int teamId, int isLeader, int isManager) {
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
-        TeamMember tm = TeamMember.builder().createTime(createTime).isLeader(isLeader).isManager(isManager).teamId(teamId).userId(userId).build();
+        TeamMember tm = TeamMember.builder().createTime(createTime).isLeader(isLeader).isManager(isManager).
+                teamId(teamId).userId(userId).build();
         TeamMember result = teamMemberRepository.save(tm);
         return TeamMemberResponse.builder().isLeader(isLeader).isManager(isManager).teamId(teamId).userId(userId).teamMemberId(result.getTeamMemberId()).build();
     }

@@ -48,8 +48,8 @@ public class UserController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/activeUser")
-    public ResponseEntity<UserResponse> activeUser(@RequestBody UpdateUserRequest request) {
-        return new ResponseEntity<>(userService.activeUser(request, request.getId()), HttpStatus.OK);
+    public ResponseEntity<UserActiveResponse> activeUser(@RequestHeader("userId") Integer id) {
+        return new ResponseEntity<>(userService.activeUser(id), HttpStatus.OK);
     }
 
     @CrossOrigin
