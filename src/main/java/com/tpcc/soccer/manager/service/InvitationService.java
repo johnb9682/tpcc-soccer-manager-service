@@ -16,6 +16,7 @@ import java.util.List;
 public class InvitationService {
     @Autowired
     private InvitationTeamRepository invitationTeamRepository;
+    @Autowired
     private InvitationEventRepository invitationEventRepository;
 
     public InvitationTeamResponse getTeamInvitation(int id) {
