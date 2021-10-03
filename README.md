@@ -28,7 +28,7 @@ kill -9 "数字"
 
 `Config Reference`: https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
 
-`Production Server`: http://ec2co-ecsel-1vjsuoece11j4-362206205.us-west-2.elb.amazonaws.com:8081/swagger-ui.htm
+`Production Server`: http://www.tpccteammanager.com/swagger-ui.html
 
 ## Frequently Used Git Commands
 Action | Git Command
