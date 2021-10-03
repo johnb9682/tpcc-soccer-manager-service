@@ -23,7 +23,7 @@ public class TeamMember {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_team_member")
     @NotNull
-    private Integer teamMemberId;
+    private int teamMemberId;
     @Column(name = "user")
     @NotNull
     @Id

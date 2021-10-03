@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Data
 public class TeamMemberCompositeKey implements Serializable {
-    private Integer teamMemberId;
+    private int teamMemberId;
     private Integer userId;
     private Integer teamId;
 }
