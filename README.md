@@ -28,6 +28,8 @@ kill -9 "数字"
 
 `Config Reference`: https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api
 
+`Production Server`: http://ec2co-ecsel-1vjsuoece11j4-362206205.us-west-2.elb.amazonaws.com:8081/swagger-ui.htm
+
 ## Frequently Used Git Commands
 Action | Git Command
 --- | --- | 
@@ -53,3 +55,6 @@ create a new branch based on current branch (shortcut)| `git checkout -b <new br
 *  `entity`: Entity definitions corresponding to the database tables.  
 *  `service`: Business logics for APIs.  
 *  `Application`(**NOT ADVISED TO CHANGE**): Main driver of the application.  
+
+## CI CD Pipeline
+![ecs-system](https://user-images.githubusercontent.com/5792436/135737880-53068792-eb2a-4daf-9ff9-d89b372231dc.png)
