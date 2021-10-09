@@ -77,16 +77,18 @@ public class TeamService {
     public TeamListResponse getUserTeam(int id) {
         List<TeamMember> teamMembers = (List<TeamMember>) teamMemberRepository.findAll();
         List<Team> teams = new ArrayList<>();
+        Team tempTeam;
         for (TeamMember teamMember : teamMembers) {
             if (teamMember.getUserId() == id) {
-                teams.add(teamRepository.findById(teamMember.getTeamId()).get());
+                tempTeam = teamRepository.findById(teamMember.getTeamId()).get();
+                teams.add(tempTeam);
             }
         }
 
         List<TeamResponse> teamResponses = new ArrayList<>();
         for (Team team : teams) {
             teamResponses.add(TeamResponse.builder().teamName(team.getTeamName()).
-                    teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).build());
+                    teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).teamId(team.getTeamId()).createTime(team.getTeamCreateTime()).build());
         }
 
         return TeamListResponse.builder().teamResponses(teamResponses).build();

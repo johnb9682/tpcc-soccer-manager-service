@@ -42,7 +42,7 @@ public class EventService {
         return EventResponse.builder().eventName(newEvent.getEventName()).
                 eventDescription(newEvent.getEventDescription()).eventStartTime(newEvent.getEventStartTime()).
                 eventEndTime(newEvent.getEventEndTime()).eventLocation(newEvent.getEventLocation()).
-                createTime(newEvent.getEventCreateTime()).hostId(event.getUserId()).build();
+                createTime(newEvent.getEventCreateTime()).hostId(event.getUserId()).eventId(event.getEventId()).build();
     }
 
     public EventResponse deleteEvent(int id){

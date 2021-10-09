@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class EventParticipantService {
@@ -67,8 +68,10 @@ public class EventParticipantService {
     }
 
     public EventParticipantResponse addEventParticipant(int userId, int eventId, int isHost) {
-        Timestamp createTime = new Timestamp((System.currentTimeMillis() / 1000) * 1000L);
-        EventParticipant eventParticipant = EventParticipant.builder().eventParticipantCreateTime(createTime).isHost(isHost).eventId(eventId).userId(userId).build();
+        Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
+        Random r = new Random();
+        int id = r.nextInt(99999999) + 1;
+        EventParticipant eventParticipant = EventParticipant.builder().eventParticipantCreateTime(createTime).isHost(isHost).eventId(eventId).userId(userId).eventParticipantId(id).build();
         EventParticipant result = eventParticipantRepository.save(eventParticipant);
         return EventParticipantResponse.builder().isHost(isHost).eventId(eventId).userId(userId).eventParticipantId(result.getEventParticipantId()).build();
     }

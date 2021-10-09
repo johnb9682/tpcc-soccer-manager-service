@@ -19,7 +19,7 @@ import java.sql.Timestamp;
 
 public class EventParticipant {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_event_participant")
     @NotNull
     private Integer eventParticipantId;

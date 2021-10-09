@@ -40,7 +40,7 @@ public class EventController {
         EventResponse response = eventService.addEvent(eventRequest);
         int id = response.getEventId();
         eventParticipantService.addEventParticipant(eventRequest.getHostId(), id, 1);
-        return new ResponseEntity<>(eventService.addEvent(eventRequest), HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @CrossOrigin
