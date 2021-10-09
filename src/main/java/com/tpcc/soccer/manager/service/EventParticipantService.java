@@ -55,7 +55,6 @@ public class EventParticipantService {
                 break;
             }
         }
-
         if (id == -1) return null;
 
         EventParticipantCompositeKey ck = new EventParticipantCompositeKey();
