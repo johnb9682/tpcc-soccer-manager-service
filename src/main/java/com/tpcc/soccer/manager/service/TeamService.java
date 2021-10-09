@@ -47,7 +47,7 @@ public class TeamService {
         Team team = teamRepository.findById(id).get();
         teamRepository.deleteById(id);
         return TeamResponse.builder().teamId(id).teamName(team.getTeamName()).
-                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).build();
+                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).createTime(team.getTeamCreateTime()).build();
     }
 
     public TeamResponse updateTeam(TeamRequest tr, int id){
@@ -57,7 +57,7 @@ public class TeamService {
         team.setUserId(tr.getLeaderId());
         teamRepository.save(team);
         return TeamResponse.builder().teamId(id).teamName(team.getTeamName()).
-                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).build();
+                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).createTime(team.getTeamCreateTime()).build();
     }
 
     public TeamListResponse getUserTeam(int id) {
