@@ -74,7 +74,7 @@ public class TeamMemberService {
         TeamMember tm = TeamMember.builder().createTime(createTime).isLeader(isLeader).isManager(isManager).
                 teamId(teamId).userId(userId).teamMemberId(id).build();
         TeamMember result = teamMemberRepository.save(tm);
-        return TeamMemberResponse.builder().isLeader(isLeader).isManager(isManager).teamId(teamId).userId(userId).teamMemberId(result.getTeamMemberId()).build();
+        return TeamMemberResponse.builder().isLeader(isLeader).isManager(isManager).teamId(teamId).userId(userId).teamMemberId(id).build();
     }
 
 
