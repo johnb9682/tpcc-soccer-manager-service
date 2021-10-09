@@ -80,8 +80,9 @@ public class EventService {
 
         List<EventResponse> eventResponses = new ArrayList<>();
         for (Event event : events) {
-            eventResponses.add(EventResponse.builder().eventName(event.getEventName()).
-                    eventDescription(event.getEventDescription()).hostId(event.getUserId()).build());
+            eventResponses.add(EventResponse.builder().eventName(event.getEventName()).eventId(event.getEventId()).
+                    eventDescription(event.getEventDescription()).hostId(event.getUserId()).eventStartTime(event.getEventStartTime()).
+                    eventEndTime(event.getEventEndTime()).eventLocation(event.getEventLocation()).createTime(event.getEventCreateTime()).build());
         }
 
         return EventListResponse.builder().eventResponses(eventResponses).build();
