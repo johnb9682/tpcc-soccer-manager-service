@@ -31,8 +31,8 @@ public class EventService {
 
     public EventResponse addEvent(EventRequest eventRequest){
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
-        Timestamp eventStartTime = new Timestamp(eventRequest.getEventStartTime()* 1000L);
-        Timestamp eventEndTime = new Timestamp(eventRequest.getEventEndTime()* 1000L);
+        Timestamp eventStartTime = new Timestamp(eventRequest.getEventStartTime());
+        Timestamp eventEndTime = new Timestamp(eventRequest.getEventEndTime());
         Event event = Event.builder().eventName(eventRequest.getEventName()).userId(eventRequest.getHostId()).
                 eventStartTime(eventStartTime).eventEndTime(eventEndTime).
                 eventLocation(eventRequest.getEventLocation()).
@@ -53,8 +53,8 @@ public class EventService {
     }
 
     public EventResponse updateEvent(EventRequest eventRequest, int id){
-        Timestamp eventStartTime = new Timestamp(eventRequest.getEventStartTime()* 1000L);
-        Timestamp eventEndTime = new Timestamp(eventRequest.getEventStartTime()* 1000L);
+        Timestamp eventStartTime = new Timestamp(eventRequest.getEventStartTime());
+        Timestamp eventEndTime = new Timestamp(eventRequest.getEventStartTime());
         Event event = eventRepository.findById(id).get();
         event.setEventName(eventRequest.getEventName());
         event.setEventStartTime(eventStartTime);
