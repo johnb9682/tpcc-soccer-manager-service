@@ -43,25 +43,11 @@ public class TeamService {
                 createTime(newTeam.getTeamCreateTime()).build();
     }
 
-    public TeamResponse addTeamTest(TeamRequest tr){
-        Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
-        Team team = Team.builder().teamName(tr.getTeamName()).teamDescription(tr.getTeamDescription()).
-                userId(tr.getLeaderId()).teamCreateTime(createTime).build();
-        Team newTeam = teamRepository.save(team);
-        TeamMember teamMember = TeamMember.builder().teamId(team.getTeamId()).
-                createTime(createTime).userId(newTeam.getUserId()).isLeader(1).isManager(0).build();
-        TeamMember newTeamMember = teamMemberRepository.save(teamMember);
-        TeamResponse rp = TeamResponse.builder().teamId(newTeam.getTeamId()).teamName(newTeam.getTeamName()).
-                teamDescription(newTeam.getTeamDescription()).leaderId(newTeam.getUserId()).
-                createTime(newTeam.getTeamCreateTime()).build();
-        return rp;
-    }
-
     public TeamResponse deleteTeam(int id){
         Team team = teamRepository.findById(id).get();
         teamRepository.deleteById(id);
         return TeamResponse.builder().teamId(id).teamName(team.getTeamName()).
-                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).build();
+                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).createTime(team.getTeamCreateTime()).build();
     }
 
     public TeamResponse updateTeam(TeamRequest tr, int id){
@@ -71,7 +57,7 @@ public class TeamService {
         team.setUserId(tr.getLeaderId());
         teamRepository.save(team);
         return TeamResponse.builder().teamId(id).teamName(team.getTeamName()).
-                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).build();
+                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).createTime(team.getTeamCreateTime()).build();
     }
 
     public TeamListResponse getUserTeam(int id) {

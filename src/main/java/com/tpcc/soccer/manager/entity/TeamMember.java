@@ -20,7 +20,7 @@ import javax.persistence.*;
 
 public class TeamMember {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_team_member")
     @NotNull
     private int teamMemberId;

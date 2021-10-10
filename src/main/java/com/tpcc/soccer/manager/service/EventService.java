@@ -24,10 +24,9 @@ public class EventService {
 
     public EventResponse getEvent(int id) {
         Event event = eventRepository.findById(id).get();
-        return EventResponse.builder().eventName(event.getEventName()).
-                eventDescription(event.getEventDescription()).hostId(event.getUserId()).
-                eventStartTime(event.getEventStartTime()).eventEndTime(event.getEventEndTime()).
-                eventLocation(event.getEventLocation()).createTime(event.getEventCreateTime()).build();
+        return EventResponse.builder().eventName(event.getEventName()).eventId(event.getEventId()).
+                eventDescription(event.getEventDescription()).hostId(event.getUserId()).eventStartTime(event.getEventStartTime()).
+                eventEndTime(event.getEventEndTime()).eventLocation(event.getEventLocation()).createTime(event.getEventCreateTime()).build();
     }
 
     public EventResponse addEvent(EventRequest eventRequest){
@@ -42,14 +41,15 @@ public class EventService {
         return EventResponse.builder().eventName(newEvent.getEventName()).
                 eventDescription(newEvent.getEventDescription()).eventStartTime(newEvent.getEventStartTime()).
                 eventEndTime(newEvent.getEventEndTime()).eventLocation(newEvent.getEventLocation()).
-                createTime(newEvent.getEventCreateTime()).hostId(event.getUserId()).build();
+                createTime(newEvent.getEventCreateTime()).hostId(event.getUserId()).eventId(event.getEventId()).build();
     }
 
     public EventResponse deleteEvent(int id){
         Event event = eventRepository.findById(id).get();
         eventRepository.deleteById(id);
-        return EventResponse.builder().eventName(event.getEventName()).
-                eventDescription(event.getEventDescription()).hostId(event.getUserId()).build();
+        return EventResponse.builder().eventName(event.getEventName()).eventId(event.getEventId()).
+                eventDescription(event.getEventDescription()).hostId(event.getUserId()).eventStartTime(event.getEventStartTime()).
+                eventEndTime(event.getEventEndTime()).eventLocation(event.getEventLocation()).createTime(event.getEventCreateTime()).build();
     }
 
     public EventResponse updateEvent(EventRequest eventRequest, int id){
@@ -63,10 +63,9 @@ public class EventService {
         event.setEventDescription(eventRequest.getEventDescription());
         event.setUserId(eventRequest.getHostId());
         eventRepository.save(event);
-        return EventResponse.builder().eventName(event.getEventName()).
-                eventDescription(event.getEventDescription()).eventStartTime(event.getEventStartTime()).
-                eventEndTime(event.getEventEndTime()).eventLocation(event.getEventLocation()).
-                hostId(event.getUserId()).build();
+        return EventResponse.builder().eventName(event.getEventName()).eventId(event.getEventId()).
+                eventDescription(event.getEventDescription()).hostId(event.getUserId()).eventStartTime(event.getEventStartTime()).
+                eventEndTime(event.getEventEndTime()).eventLocation(event.getEventLocation()).createTime(event.getEventCreateTime()).build();
     }
 
     public EventListResponse getUserEvent(int id) {
@@ -80,8 +79,9 @@ public class EventService {
 
         List<EventResponse> eventResponses = new ArrayList<>();
         for (Event event : events) {
-            eventResponses.add(EventResponse.builder().eventName(event.getEventName()).
-                    eventDescription(event.getEventDescription()).hostId(event.getUserId()).build());
+            eventResponses.add(EventResponse.builder().eventName(event.getEventName()).eventId(event.getEventId()).
+                    eventDescription(event.getEventDescription()).hostId(event.getUserId()).eventStartTime(event.getEventStartTime()).
+                    eventEndTime(event.getEventEndTime()).eventLocation(event.getEventLocation()).createTime(event.getEventCreateTime()).build());
         }
 
         return EventListResponse.builder().eventResponses(eventResponses).build();
