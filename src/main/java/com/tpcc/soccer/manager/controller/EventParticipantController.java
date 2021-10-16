@@ -32,9 +32,9 @@ public class EventParticipantController {
 
     @CrossOrigin
     @RequestMapping(method=RequestMethod.POST, value="/eventParticipant")
-    public ResponseEntity<EventParticipantResponse> addMember(@RequestHeader("userId") int userId, @RequestHeader("teamId") int teamId,
+    public ResponseEntity<EventParticipantResponse> addParticipant (@RequestHeader("userId") int userId, @RequestHeader("eventId") int eventId,
                                                         @RequestHeader("isHost") int isHost) {
-        return new ResponseEntity<>(eventParticipantService.addEventParticipant(userId, teamId, isHost), HttpStatus.OK);
+        return new ResponseEntity<>(eventParticipantService.addEventParticipant(userId, eventId, isHost), HttpStatus.OK);
     }
 
 }
