@@ -57,7 +57,7 @@ public class TeamMemberService {
             }
         }
         if (id == -1 ) {
-            return null;
+            throw new NullPointerException();
         }
         TeamMemberCompositeKey ck = new TeamMemberCompositeKey();
         ck.setTeamId(teamId);
