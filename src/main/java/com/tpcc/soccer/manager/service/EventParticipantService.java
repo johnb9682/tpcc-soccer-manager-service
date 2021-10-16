@@ -1,8 +1,10 @@
 package com.tpcc.soccer.manager.service;
 
 import com.tpcc.soccer.manager.dao.EventParticipantRepository;
+import com.tpcc.soccer.manager.dao.EventRepository;
 import com.tpcc.soccer.manager.dao.UserRepository;
 import com.tpcc.soccer.manager.dto.EventParticipantResponse;
+import com.tpcc.soccer.manager.dto.EventResponse;
 import com.tpcc.soccer.manager.dto.ParticipantListResponse;
 import com.tpcc.soccer.manager.dto.UserResponseWithId;
 import com.tpcc.soccer.manager.entity.*;
@@ -17,6 +19,8 @@ import java.util.Random;
 
 @Service
 public class EventParticipantService {
+    @Autowired
+    private EventRepository eventRepository;
     @Autowired
     private EventParticipantRepository eventParticipantRepository;
     @Autowired
@@ -48,7 +52,12 @@ public class EventParticipantService {
         for (EventParticipant ep : participants) {
             if (ep.getUserId() == userId && ep.getEventId() == eventId) {
                 if (ep.getIsHost() == 1) {
-                    throw new HostException();
+                    Event event = eventRepository.findById(id).get();
+                    eventRepository.deleteById(id);
+                    return EventParticipantResponse.builder().eventParticipantId(participant.getEventParticipantId()).
+                            userId(participant.getUserId()).eventId(participant.getEventId()).isHost(participant.getIsHost()).build();
+                    // deleteEvent(eventId);
+                    // throw new HostException();
                 }
                 id = ep.getEventParticipantId();
                 participant = ep;
