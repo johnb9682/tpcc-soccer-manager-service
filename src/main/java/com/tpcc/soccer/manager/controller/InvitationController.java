@@ -1,7 +1,10 @@
 package com.tpcc.soccer.manager.controller;
 
 import com.tpcc.soccer.manager.dto.*;
+import com.tpcc.soccer.manager.service.EventParticipantService;
 import com.tpcc.soccer.manager.service.InvitationService;
+import com.tpcc.soccer.manager.service.TeamMemberService;
+import io.swagger.models.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,6 +19,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class InvitationController {
     @Autowired
     private InvitationService invitationService;
+    @Autowired
+    private TeamMemberService teamMemberService;
+    @Autowired
+    private EventParticipantService eventParticipantService;
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/getTeamInvitation")
@@ -75,4 +82,26 @@ public class InvitationController {
     public ResponseEntity<InvitationEventResponse> updateEventInvitation(@RequestBody UpdateInvitationRequest request) {
         return new ResponseEntity<>(invitationService.updateEventInvitation(request), HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.PUT, value = "/respondTeamInvitation")
+    public ResponseEntity<InvitationTeamResponse> respondTeamInvitation(@RequestBody UpdateInvitationRequest request) {
+        int respondValue = request.getStatus();
+        if (respondValue == 1){
+            teamMemberService.addTeamMember(request.getReceiverId(), request.getEntityId(), 0, 0);
+        }
+        return new ResponseEntity<>(invitationService.updateTeamInvitation(request), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.PUT, value = "/respondEventInvitation")
+    public ResponseEntity<InvitationEventResponse> respondEventInvitation(@RequestBody UpdateInvitationRequest request) {
+        int respondValue = request.getStatus();
+        if (respondValue == 1){
+            eventParticipantService.addEventParticipant(request.getReceiverId(), request.getEntityId(), 0);
+        }
+        return new ResponseEntity<>(invitationService.updateEventInvitation(request), HttpStatus.OK);
+    }
+
+
 }
