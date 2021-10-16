@@ -6,8 +6,8 @@ import lombok.Data;
 public class EventRequest {
     private String eventName;
     private int hostId;
-    private int eventStartTime;
-    private int eventEndTime;
+    private Long eventStartTime;
+    private Long eventEndTime;
     private String eventLocation;
     private String eventDescription;
 }

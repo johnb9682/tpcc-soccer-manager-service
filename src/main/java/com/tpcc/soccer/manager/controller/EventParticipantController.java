@@ -23,6 +23,8 @@ public class EventParticipantController {
         return new ResponseEntity<>(eventParticipantService.getParticipant(id), HttpStatus.OK);
     }
 
+    @CrossOrigin
+    @RequestMapping(method=RequestMethod.DELETE, value="/eventParticipant")
     public ResponseEntity<EventParticipantResponse> deleteParticipant (@RequestHeader("userId") int userId,
                                                                        @RequestHeader("eventId") int eventId) throws HostException {
         return new ResponseEntity<>(eventParticipantService.deleteParticipant(userId, eventId), HttpStatus.OK);
@@ -30,8 +32,9 @@ public class EventParticipantController {
 
     @CrossOrigin
     @RequestMapping(method=RequestMethod.POST, value="/eventParticipant")
-    public ResponseEntity<EventParticipantResponse> addMember(@RequestHeader("userId") int userId, @RequestHeader("teamId") int teamId,
+    public ResponseEntity<EventParticipantResponse> addParticipant (@RequestHeader("userId") int userId, @RequestHeader("eventId") int eventId,
                                                         @RequestHeader("isHost") int isHost) {
-        return new ResponseEntity<>(eventParticipantService.addEventParticipant(userId, teamId, isHost), HttpStatus.OK);
+        return new ResponseEntity<>(eventParticipantService.addEventParticipant(userId, eventId, isHost), HttpStatus.OK);
     }
+
 }
