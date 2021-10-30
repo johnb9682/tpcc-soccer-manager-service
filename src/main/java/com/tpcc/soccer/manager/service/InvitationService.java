@@ -114,26 +114,28 @@ public class InvitationService {
         return InvitationListResponse.builder().invitationEventResponses(invitationEventResponses).build();
     }
 
-    public InvitationTeamResponse updateTeamInvitation(UpdateInvitationRequest request) {
+    public InvitationTeamResponse respondTeamInvitation(InvitationTeamResponse request, int respondValue) {
         Timestamp responseTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
-        InvitationTeam invitationToUpdate = invitationTeamRepository.findById(request.getInvitationId()).get();
-        invitationToUpdate.setStatus(request.getStatus());
+        InvitationTeam invitationToUpdate = invitationTeamRepository.findById(request.getInvitation_id()).get();
+        invitationToUpdate.setStatus(respondValue);
         invitationToUpdate.setResponseTime(responseTime);
         invitationTeamRepository.save(invitationToUpdate);
         return InvitationTeamResponse.builder().teamId(invitationToUpdate.getTeamId()).invitation_id(invitationToUpdate.getInvitationId()).
                 senderId(invitationToUpdate.getSenderId()).receiverId(invitationToUpdate.getReceiverId()).
-                status(invitationToUpdate.getStatus()).createTime(invitationToUpdate.getCreateTime()).build();
+                status(invitationToUpdate.getStatus()).createTime(invitationToUpdate.getCreateTime()).
+                responseTime(invitationToUpdate.getResponseTime()).build();
     }
 
-    public InvitationEventResponse updateEventInvitation(UpdateInvitationRequest request) {
+    public InvitationEventResponse respondEventInvitation(InvitationEventResponse request, int respondValue) {
         Timestamp responseTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
-        InvitationEvent invitationToUpdate = invitationEventRepository.findById(request.getInvitationId()).get();
-        invitationToUpdate.setStatus(request.getStatus());
+        InvitationEvent invitationToUpdate = invitationEventRepository.findById(request.getInvitation_id()).get();
+        invitationToUpdate.setStatus(respondValue);
         invitationToUpdate.setResponseTime(responseTime);
         invitationEventRepository.save(invitationToUpdate);
         return InvitationEventResponse.builder().eventId(invitationToUpdate.getEventId()).invitation_id(invitationToUpdate.getInvitationId()).
                 senderId(invitationToUpdate.getSenderId()).receiverId(invitationToUpdate.getReceiverId()).
-                status(invitationToUpdate.getStatus()).createTime(invitationToUpdate.getCreateTime()).build();
+                status(invitationToUpdate.getStatus()).createTime(invitationToUpdate.getCreateTime()).
+                responseTime(invitationToUpdate.getResponseTime()).build();
     }
 
 }

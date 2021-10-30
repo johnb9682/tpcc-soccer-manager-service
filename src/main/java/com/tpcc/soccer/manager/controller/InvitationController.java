@@ -71,36 +71,38 @@ public class InvitationController {
         return new ResponseEntity<>(invitationService.getUserEventInvitation(id), HttpStatus.OK);
     }
 
-    @CrossOrigin
-    @RequestMapping(method = RequestMethod.PUT, value = "/updateTeamInvitation")
-    public ResponseEntity<InvitationTeamResponse> updateTeamInvitation(@RequestBody UpdateInvitationRequest request) {
-        return new ResponseEntity<>(invitationService.updateTeamInvitation(request), HttpStatus.OK);
-    }
+    //@CrossOrigin
+    //@RequestMapping(method = RequestMethod.PUT, value = "/updateTeamInvitation")
+    //public ResponseEntity<InvitationTeamResponse> updateTeamInvitation(@RequestBody UpdateInvitationRequest request) {
+        //return new ResponseEntity<>(invitationService.updateTeamInvitation(request), HttpStatus.OK);
+    //}
 
-    @CrossOrigin
-    @RequestMapping(method = RequestMethod.PUT, value = "/updateEventInvitation")
-    public ResponseEntity<InvitationEventResponse> updateEventInvitation(@RequestBody UpdateInvitationRequest request) {
-        return new ResponseEntity<>(invitationService.updateEventInvitation(request), HttpStatus.OK);
-    }
+    //@CrossOrigin
+    //@RequestMapping(method = RequestMethod.PUT, value = "/updateEventInvitation")
+    //public ResponseEntity<InvitationEventResponse> updateEventInvitation(@RequestBody UpdateInvitationRequest request) {
+        //return new ResponseEntity<>(invitationService.updateEventInvitation(request), HttpStatus.OK);
+    //}
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/respondTeamInvitation")
-    public ResponseEntity<InvitationTeamResponse> respondTeamInvitation(@RequestBody UpdateInvitationRequest request) {
-        int respondValue = request.getStatus();
+    public ResponseEntity<InvitationTeamResponse> respondTeamInvitation(@RequestHeader int id,
+                                                                        @RequestHeader int respondValue) {
+        InvitationTeamResponse response = invitationService.getTeamInvitation(id);
         if (respondValue == 1){
-            teamMemberService.addTeamMember(request.getReceiverId(), request.getEntityId(), 0, 0);
+            teamMemberService.addTeamMember(response.getReceiverId(), response.getTeamId(), 0, 0);
         }
-        return new ResponseEntity<>(invitationService.updateTeamInvitation(request), HttpStatus.OK);
+        return new ResponseEntity<>(invitationService.respondTeamInvitation(response, respondValue), HttpStatus.OK);
     }
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/respondEventInvitation")
-    public ResponseEntity<InvitationEventResponse> respondEventInvitation(@RequestBody UpdateInvitationRequest request) {
-        int respondValue = request.getStatus();
+    public ResponseEntity<InvitationEventResponse> respondEventInvitation(@RequestHeader int id,
+                                                                          @RequestHeader int respondValue) {
+        InvitationEventResponse response = invitationService.getEventInvitation(id);
         if (respondValue == 1){
-            eventParticipantService.addEventParticipant(request.getReceiverId(), request.getEntityId(), 0);
+            eventParticipantService.addEventParticipant(response.getReceiverId(), response.getEventId(), 0);
         }
-        return new ResponseEntity<>(invitationService.updateEventInvitation(request), HttpStatus.OK);
+        return new ResponseEntity<>(invitationService.respondEventInvitation(response, respondValue), HttpStatus.OK);
     }
 
 
