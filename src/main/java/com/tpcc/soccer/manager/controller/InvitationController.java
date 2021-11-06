@@ -50,13 +50,13 @@ public class InvitationController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/addTeamInvitation")
-    public ResponseEntity<InvitationTeamResponse> addEventInvitation(@RequestBody InvitationTeamRequest ir) {
+    public ResponseEntity<InvitationListResponse> addEventInvitation(@RequestBody InvitationTeamPostRequest ir) {
         return new ResponseEntity<>(invitationService.addTeamInvitation(ir), HttpStatus.OK);
     }
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "/addEventInvitation")
-    public ResponseEntity<InvitationEventResponse> addEventInvitation(@RequestBody InvitationEventRequest ir) {
+    public ResponseEntity<InvitationListResponse> addEventInvitation(@RequestBody InvitationEventPostRequest ir) {
         return new ResponseEntity<>(invitationService.addEventInvitation(ir), HttpStatus.OK);
     }
 

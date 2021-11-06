@@ -34,25 +34,36 @@ public class InvitationService {
                 createTime(invitation.getCreateTime()).responseTime(invitation.getResponseTime()).build();
 }
 
-    public InvitationTeamResponse addTeamInvitation(InvitationTeamRequest ir){
+    public InvitationListResponse addTeamInvitation(InvitationTeamPostRequest ir){
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
-        InvitationTeam invitation = InvitationTeam.builder().teamId(ir.getTeamId()).senderId(ir.getSenderId()).
-                receiverId(ir.getReceiverId()).status(0).createTime(createTime).build();
-        InvitationTeam newInvitation = invitationTeamRepository.save(invitation);
-        return InvitationTeamResponse.builder().invitation_id(newInvitation.getInvitationId()).
-                senderId(newInvitation.getSenderId()).
-                receiverId(newInvitation.getReceiverId()).status(newInvitation.getStatus()).
-                createTime(newInvitation.getCreateTime()).build();
+        List<Integer> receivers = ir.getReceiverIds();
+        List<InvitationTeamResponse> invitationTeamResponses = new ArrayList<>();
+        for (int receiver : receivers){
+            InvitationTeam invitation = InvitationTeam.builder().teamId(ir.getTeamId()).senderId(ir.getSenderId()).
+                    receiverId(receiver).status(0).createTime(createTime).build();
+            InvitationTeam newInvitation = invitationTeamRepository.save(invitation);
+            invitationTeamResponses.add(InvitationTeamResponse.builder().invitation_id(newInvitation.getInvitationId()).
+                    teamId(newInvitation.getTeamId()).senderId(newInvitation.getSenderId()).
+                    receiverId(newInvitation.getReceiverId()).status(newInvitation.getStatus()).
+                    createTime(newInvitation.getCreateTime()).build());
+        }
+        return InvitationListResponse.builder().invitationTeamResponses(invitationTeamResponses).build();
     }
-    public InvitationEventResponse addEventInvitation(InvitationEventRequest ir){
+
+    public InvitationListResponse addEventInvitation(InvitationEventPostRequest ir){
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
-        InvitationEvent invitation = InvitationEvent.builder().eventId(ir.getEventId()).senderId(ir.getSenderId()).
-                receiverId(ir.getReceiverId()).status(0).createTime(createTime).build();
-        InvitationEvent newInvitation = invitationEventRepository.save(invitation);
-        return InvitationEventResponse.builder().invitation_id(newInvitation.getInvitationId()).
-                senderId(newInvitation.getSenderId()).
-                receiverId(newInvitation.getReceiverId()).status(newInvitation.getStatus()).
-                createTime(newInvitation.getCreateTime()).build();
+        List<Integer> receivers = ir.getReceiverIds();
+        List<InvitationEventResponse> invitationEventResponses = new ArrayList<>();
+        for (int receiver : receivers){
+            InvitationEvent invitation = InvitationEvent.builder().eventId(ir.getEventId()).senderId(ir.getSenderId()).
+                    receiverId(receiver).status(0).createTime(createTime).build();
+            InvitationEvent newInvitation = invitationEventRepository.save(invitation);
+            invitationEventResponses.add(InvitationEventResponse.builder().invitation_id(newInvitation.getInvitationId()).
+                    eventId(newInvitation.getEventId()).senderId(newInvitation.getSenderId()).
+                    receiverId(newInvitation.getReceiverId()).status(newInvitation.getStatus()).
+                    createTime(newInvitation.getCreateTime()).build());
+        }
+        return InvitationListResponse.builder().invitationEventResponses(invitationEventResponses).build();
     }
 
     public InvitationTeamResponse deleteTeamInvitation(int id){
