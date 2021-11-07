@@ -148,5 +148,4 @@ public class InvitationService {
                 status(invitationToUpdate.getStatus()).createTime(invitationToUpdate.getCreateTime()).
                 responseTime(invitationToUpdate.getResponseTime()).build();
     }
-
 }
