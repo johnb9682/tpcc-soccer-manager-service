@@ -17,6 +17,7 @@ import com.tpcc.soccer.manager.entity.TeamMember;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -70,7 +71,20 @@ public class TeamMemberService {
     public TeamMemberResponse addTeamMember(int userId, int teamId, int isLeader, int isManager) {
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
         Random r = new Random();
+        TeamMemberCompositeKey ck = new TeamMemberCompositeKey();
+        ck.setTeamId(teamId);
+        ck.setUserId(userId);
         int id = r.nextInt(99999999) + 1;
+        ck.setTeamMemberId(id);
+        Optional<TeamMember> ex = Optional.of(new TeamMember());
+        while(true) {
+            ex = teamMemberRepository.findById(ck);
+            if (ex == null) {
+                break;
+            }
+            id = r.nextInt(99999999) + 1;
+            ck.setTeamMemberId(id);
+        }
         TeamMember tm = TeamMember.builder().createTime(createTime).isLeader(isLeader).isManager(isManager).
                 teamId(teamId).userId(userId).teamMemberId(id).build();
 //        TeamMember tm = TeamMember.builder().createTime(createTime).isLeader(isLeader).isManager(isManager).
