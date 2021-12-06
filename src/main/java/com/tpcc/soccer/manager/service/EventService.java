@@ -54,7 +54,7 @@ public class EventService {
 
     public EventResponse updateEvent(EventRequest eventRequest, int id){
         Timestamp eventStartTime = new Timestamp((eventRequest.getEventStartTime()));
-        Timestamp eventEndTime = new Timestamp((eventRequest.getEventStartTime()));
+        Timestamp eventEndTime = new Timestamp((eventRequest.getEventEndTime()));
         Event event = eventRepository.findById(id).get();
         event.setEventName(eventRequest.getEventName());
         event.setEventStartTime(eventStartTime);
