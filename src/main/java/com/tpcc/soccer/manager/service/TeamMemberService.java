@@ -76,10 +76,10 @@ public class TeamMemberService {
         ck.setUserId(userId);
         int id = r.nextInt(99999999) + 1;
         ck.setTeamMemberId(id);
-        Optional<TeamMember> ex = Optional.of(new TeamMember());
+        Optional<TeamMember> ex;
         while(true) {
             ex = teamMemberRepository.findById(ck);
-            if (ex == null) {
+            if (ex.empty().isPresent()) {
                 break;
             }
             id = r.nextInt(99999999) + 1;
