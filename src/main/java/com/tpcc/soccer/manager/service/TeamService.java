@@ -37,10 +37,15 @@ public class TeamService {
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
         Team team = Team.builder().teamName(tr.getTeamName()).teamDescription(tr.getTeamDescription()).
                 userId(tr.getLeaderId()).teamCreateTime(createTime).build();
-        Team newTeam = teamRepository.save(team);
+        //Team newTeam = teamRepository.save(team);
+        /*
         return TeamResponse.builder().teamId(newTeam.getTeamId()).teamName(newTeam.getTeamName()).
                 teamDescription(newTeam.getTeamDescription()).leaderId(newTeam.getUserId()).
                 createTime(newTeam.getTeamCreateTime()).build();
+         */
+        return TeamResponse.builder().teamId(team.getTeamId()).teamName(team.getTeamName()).
+                teamDescription(team.getTeamDescription()).leaderId(team.getUserId()).
+                createTime(team.getTeamCreateTime()).build();
     }
 
     public TeamResponse deleteTeam(int id){
