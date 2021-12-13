@@ -79,7 +79,7 @@ public class TeamMemberService {
         Optional<TeamMember> ex;
         while(true) {
             ex = teamMemberRepository.findById(ck);
-            if (ex.empty().isPresent()) {
+            if (ex.isPresent()) {
                 break;
             }
             id = r.nextInt(99999999) + 1;
