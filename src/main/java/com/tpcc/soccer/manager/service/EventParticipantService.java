@@ -78,7 +78,18 @@ public class EventParticipantService {
     public EventParticipantResponse addEventParticipant(int userId, int eventId, int isHost) {
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
         Random r = new Random();
+        EventParticipantCompositeKey ck = new EventParticipantCompositeKey();
+        ck.setEventId(eventId);
+        ck.setUserId(userId);
         int id = r.nextInt(99999999) + 1;
+        ck.setEventParticipantId(id);
+        while(true) {
+            if (!eventParticipantRepository.findById(ck).isPresent()) {
+                break;
+            }
+            id = r.nextInt(99999999) + 1;
+            ck.setEventParticipantId(id);
+        }
         EventParticipant eventParticipant = EventParticipant.builder().eventParticipantCreateTime(createTime).isHost(isHost).eventId(eventId).userId(userId).eventParticipantId(id).build();
         EventParticipant result = eventParticipantRepository.save(eventParticipant);
         return EventParticipantResponse.builder().isHost(isHost).eventId(eventId).userId(userId).eventParticipantId(result.getEventParticipantId()).build();
