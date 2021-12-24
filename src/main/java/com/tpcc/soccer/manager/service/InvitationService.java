@@ -53,15 +53,22 @@ public class InvitationService {
 
     public InvitationListResponse addTeamInvitation(InvitationTeamPostRequest ir){
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
-        List<Integer> receivers = ir.getReceiverIds();
+        List<Integer> receiverIds = ir.getReceiverIds();
+        Integer senderId = ir.getSenderId();
+        User sender = userRepository.findById(senderId).get();
+        String senderName = sender.getUserName();
+        Team team = teamRepository.findById(ir.getTeamId()).get();
+        String teamName = team.getTeamName();
         List<InvitationTeamResponse> invitationTeamResponses = new ArrayList<>();
-        for (int receiver : receivers){
+        for (int receiverId : receiverIds){
+            User receiver = userRepository.findById(receiverId).get();
+            String receiverName = receiver.getUserName();
             InvitationTeam invitation = InvitationTeam.builder().teamId(ir.getTeamId()).senderId(ir.getSenderId()).
-                    receiverId(receiver).status(0).createTime(createTime).build();
+                    receiverId(receiverId).status(0).createTime(createTime).build();
             InvitationTeam newInvitation = invitationTeamRepository.save(invitation);
             invitationTeamResponses.add(InvitationTeamResponse.builder().invitationId(newInvitation.getInvitationId()).
-                    teamId(newInvitation.getTeamId()).senderId(newInvitation.getSenderId()).
-                    receiverId(newInvitation.getReceiverId()).status(newInvitation.getStatus()).
+                    teamId(newInvitation.getTeamId()).teamName(teamName).senderId(newInvitation.getSenderId()).senderName(senderName).
+                    receiverId(newInvitation.getReceiverId()).receiverName(receiverName).status(newInvitation.getStatus()).
                     createTime(newInvitation.getCreateTime()).build());
         }
         return InvitationListResponse.builder().invitationTeamResponses(invitationTeamResponses).build();
@@ -69,15 +76,22 @@ public class InvitationService {
 
     public InvitationListResponse addEventInvitation(InvitationEventPostRequest ir){
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
-        List<Integer> receivers = ir.getReceiverIds();
+        List<Integer> receiverIds = ir.getReceiverIds();
+        Integer senderId = ir.getSenderId();
+        User sender = userRepository.findById(senderId).get();
+        String senderName = sender.getUserName();
+        Event event = eventRepository.findById(ir.getEventId()).get();
+        String eventName = event.getEventName();
         List<InvitationEventResponse> invitationEventResponses = new ArrayList<>();
-        for (int receiver : receivers){
+        for (int receiverId : receiverIds){
+            User receiver = userRepository.findById(receiverId).get();
+            String receiverName = receiver.getUserName();
             InvitationEvent invitation = InvitationEvent.builder().eventId(ir.getEventId()).senderId(ir.getSenderId()).
-                    receiverId(receiver).status(0).createTime(createTime).build();
+                    receiverId(receiverId).status(0).createTime(createTime).build();
             InvitationEvent newInvitation = invitationEventRepository.save(invitation);
             invitationEventResponses.add(InvitationEventResponse.builder().invitationId(newInvitation.getInvitationId()).
-                    eventId(newInvitation.getEventId()).senderId(newInvitation.getSenderId()).
-                    receiverId(newInvitation.getReceiverId()).status(newInvitation.getStatus()).
+                    eventId(newInvitation.getEventId()).eventName(eventName).senderId(newInvitation.getSenderId()).senderName(senderName).
+                    receiverId(newInvitation.getReceiverId()).receiverName(receiverName).status(newInvitation.getStatus()).
                     createTime(newInvitation.getCreateTime()).build());
         }
         return InvitationListResponse.builder().invitationEventResponses(invitationEventResponses).build();

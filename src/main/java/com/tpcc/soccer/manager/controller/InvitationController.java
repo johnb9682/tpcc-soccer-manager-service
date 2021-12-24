@@ -82,18 +82,6 @@ public class InvitationController {
         return new ResponseEntity<>(invitationService.getUserSenderEventInvitation(id), HttpStatus.OK);
     }
 
-    //@CrossOrigin
-    //@RequestMapping(method = RequestMethod.PUT, value = "/updateTeamInvitation")
-    //public ResponseEntity<InvitationTeamResponse> updateTeamInvitation(@RequestBody UpdateInvitationRequest request) {
-        //return new ResponseEntity<>(invitationService.updateTeamInvitation(request), HttpStatus.OK);
-    //}
-
-    //@CrossOrigin
-    //@RequestMapping(method = RequestMethod.PUT, value = "/updateEventInvitation")
-    //public ResponseEntity<InvitationEventResponse> updateEventInvitation(@RequestBody UpdateInvitationRequest request) {
-        //return new ResponseEntity<>(invitationService.updateEventInvitation(request), HttpStatus.OK);
-    //}
-
     @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/respondTeamInvitation")
     public ResponseEntity<InvitationTeamResponse> respondTeamInvitation(@RequestHeader int id,
