@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @Builder
 public class InvitationEventResponse
 {
-    private int invitation_id;
+    private int invitationId;
     private int eventId;
     private int senderId;
     private int receiverId;
