@@ -17,6 +17,7 @@ public class InvitationTeamResponse
     private int senderId;
     private String senderName;
     private int receiverId;
+    private String receiverName;
     private int status; // 0 is pending; -1 is rejected; 1 is accepted;
     private Timestamp createTime;
     private Timestamp responseTime;
