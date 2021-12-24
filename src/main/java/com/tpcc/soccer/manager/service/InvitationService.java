@@ -82,13 +82,10 @@ public class InvitationService {
 
     }
 
-    public InvitationListResponse getUserTeamInvitation(int id){
+    public InvitationListResponse getUserReceiverTeamInvitation(int id){
         List<InvitationTeam> invitations = (List<InvitationTeam>) invitationTeamRepository.findAll();
         List<InvitationTeam> invitationList = new ArrayList<>();
         for (InvitationTeam invitation : invitations) {
-            if (invitation.getSenderId() == id) {
-                invitationList.add(invitationTeamRepository.findById(invitation.getInvitationId()).get());
-            }
             if (invitation.getReceiverId() == id) {
                 invitationList.add(invitationTeamRepository.findById(invitation.getInvitationId()).get());
             }
@@ -103,13 +100,10 @@ public class InvitationService {
         return InvitationListResponse.builder().invitationTeamResponses(invitationTeamResponses).build();
     }
 
-    public InvitationListResponse getUserEventInvitation(int id){
+    public InvitationListResponse getUserReceiverEventInvitation(int id){
         List<InvitationEvent> invitations = (List<InvitationEvent>) invitationEventRepository.findAll();
         List<InvitationEvent> invitationList = new ArrayList<>();
         for (InvitationEvent invitation : invitations) {
-            if (invitation.getSenderId() == id) {
-                invitationList.add(invitationEventRepository.findById(invitation.getInvitationId()).get());
-            }
             if (invitation.getReceiverId() == id) {
                 invitationList.add(invitationEventRepository.findById(invitation.getInvitationId()).get());
             }
@@ -124,6 +118,44 @@ public class InvitationService {
         }
         return InvitationListResponse.builder().invitationEventResponses(invitationEventResponses).build();
     }
+
+    public InvitationListResponse getUserSenderTeamInvitation(int id){
+        List<InvitationTeam> invitations = (List<InvitationTeam>) invitationTeamRepository.findAll();
+        List<InvitationTeam> invitationList = new ArrayList<>();
+        for (InvitationTeam invitation : invitations) {
+            if (invitation.getSenderId() == id) {
+                invitationList.add(invitationTeamRepository.findById(invitation.getInvitationId()).get());
+            }
+        }
+        List<InvitationTeamResponse> invitationTeamResponses = new ArrayList<>();
+        for (InvitationTeam invitation : invitations){
+            invitationTeamResponses.add(InvitationTeamResponse.builder().invitationId(invitation.getInvitationId()).
+                    teamId(invitation.getTeamId()).senderId(invitation.getSenderId()).
+                    receiverId(invitation.getReceiverId()).status(invitation.getStatus()).
+                    createTime(invitation.getCreateTime()).build());
+        }
+        return InvitationListResponse.builder().invitationTeamResponses(invitationTeamResponses).build();
+    }
+
+    public InvitationListResponse getUserSenderEventInvitation(int id){
+        List<InvitationEvent> invitations = (List<InvitationEvent>) invitationEventRepository.findAll();
+        List<InvitationEvent> invitationList = new ArrayList<>();
+        for (InvitationEvent invitation : invitations) {
+            if (invitation.getSenderId() == id) {
+                invitationList.add(invitationEventRepository.findById(invitation.getInvitationId()).get());
+            }
+        }
+
+        List<InvitationEventResponse> invitationEventResponses = new ArrayList<>();
+        for (InvitationEvent invitation : invitations) {
+            invitationEventResponses.add(InvitationEventResponse.builder().invitationId(invitation.getInvitationId()).
+                    eventId(invitation.getEventId()).senderId(invitation.getSenderId()).
+                    receiverId(invitation.getReceiverId()).status(invitation.getStatus()).
+                    createTime(invitation.getCreateTime()).build());
+        }
+        return InvitationListResponse.builder().invitationEventResponses(invitationEventResponses).build();
+    }
+
 
     public InvitationTeamResponse respondTeamInvitation(InvitationTeamResponse request, int respondValue) {
         Timestamp responseTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);

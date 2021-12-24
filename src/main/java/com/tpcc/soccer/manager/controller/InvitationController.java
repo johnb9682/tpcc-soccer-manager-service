@@ -62,13 +62,24 @@ public class InvitationController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/getUserTeamInvitation")
-    public ResponseEntity<InvitationListResponse> getUserTeamInvitation(@RequestHeader("userId") int id) {
-        return new ResponseEntity<>(invitationService.getUserTeamInvitation(id), HttpStatus.OK);
+    public ResponseEntity<InvitationListResponse> getUserReceiverTeamInvitation(@RequestHeader("userId") int id) {
+        return new ResponseEntity<>(invitationService.getUserReceiverEventInvitation(id), HttpStatus.OK);
     }
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "/getUserEventInvitation")
-    public ResponseEntity<InvitationListResponse> getUserEventInvitation(@RequestHeader("userId") int id) {
-        return new ResponseEntity<>(invitationService.getUserEventInvitation(id), HttpStatus.OK);
+    public ResponseEntity<InvitationListResponse> getUserReceiverEventInvitation(@RequestHeader("userId") int id) {
+        return new ResponseEntity<>(invitationService.getUserReceiverEventInvitation(id), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value = "/getUserTeamInvitation")
+    public ResponseEntity<InvitationListResponse> getUserSenderTeamInvitation(@RequestHeader("userId") int id) {
+        return new ResponseEntity<>(invitationService.getUserSenderEventInvitation(id), HttpStatus.OK);
+    }
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value = "/getUserEventInvitation")
+    public ResponseEntity<InvitationListResponse> getUserSenderEventInvitation(@RequestHeader("userId") int id) {
+        return new ResponseEntity<>(invitationService.getUserSenderEventInvitation(id), HttpStatus.OK);
     }
 
     //@CrossOrigin
