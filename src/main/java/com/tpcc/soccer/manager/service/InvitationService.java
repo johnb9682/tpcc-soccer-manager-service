@@ -118,7 +118,6 @@ public class InvitationService {
         String eventName = event.getEventName();
         User receiver = userRepository.findById(invitation.getReceiverId()).get();
         String receiverName = receiver.getUserName();
-        invitationTeamRepository.deleteById(id);
         invitationEventRepository.deleteById(id);
         return InvitationEventResponse.builder().invitationId(id).eventId(invitation.getEventId()).eventName(eventName).
                 senderId(invitation.getSenderId()).senderName(senderName).receiverId(invitation.getReceiverId()).receiverName(receiverName).

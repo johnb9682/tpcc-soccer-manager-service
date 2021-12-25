@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Map;
+
 
 @RestController
 public class InvitationController {
@@ -84,24 +86,22 @@ public class InvitationController {
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/respondTeamInvitation")
-    public ResponseEntity<InvitationTeamResponse> respondTeamInvitation(@RequestHeader int id,
-                                                                        @RequestHeader int respondValue) {
-        InvitationTeamResponse response = invitationService.getTeamInvitation(id);
-        if (respondValue == 1){
+    public ResponseEntity<InvitationTeamResponse> respondTeamInvitation(@RequestBody InvitationRespondBody respondBody) {
+        InvitationTeamResponse response = invitationService.getTeamInvitation(respondBody.getInvitationId());
+        if (respondBody.getRespondValue() == 1){
             teamMemberService.addTeamMember(response.getReceiverId(), response.getTeamId(), 0, 0);
         }
-        return new ResponseEntity<>(invitationService.respondTeamInvitation(response, respondValue), HttpStatus.OK);
+        return new ResponseEntity<>(invitationService.respondTeamInvitation(response, respondBody.getRespondValue()), HttpStatus.OK);
     }
 
     @CrossOrigin
     @RequestMapping(method = RequestMethod.PUT, value = "/respondEventInvitation")
-    public ResponseEntity<InvitationEventResponse> respondEventInvitation(@RequestHeader int id,
-                                                                          @RequestHeader int respondValue) {
-        InvitationEventResponse response = invitationService.getEventInvitation(id);
-        if (respondValue == 1){
+    public ResponseEntity<InvitationEventResponse> respondEventInvitation(@RequestBody InvitationRespondBody respondBody){
+        InvitationEventResponse response = invitationService.getEventInvitation(respondBody.getInvitationId());
+        if (respondBody.getRespondValue() == 1){
             eventParticipantService.addEventParticipant(response.getReceiverId(), response.getEventId(), 0);
         }
-        return new ResponseEntity<>(invitationService.respondEventInvitation(response, respondValue), HttpStatus.OK);
+        return new ResponseEntity<>(invitationService.respondEventInvitation(response, respondBody.getRespondValue()), HttpStatus.OK);
     }
 
 
