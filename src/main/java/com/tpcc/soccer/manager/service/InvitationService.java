@@ -136,7 +136,7 @@ public class InvitationService {
             }
         }
         List<InvitationTeamResponse> invitationTeamResponses = new ArrayList<>();
-        for (InvitationTeam invitation : invitations){
+        for (InvitationTeam invitation : invitationList){
             User sender = userRepository.findById(invitation.getSenderId()).get();
             String senderName = sender.getUserName();
             Team team = teamRepository.findById(invitation.getTeamId()).get();
@@ -161,7 +161,7 @@ public class InvitationService {
         }
 
         List<InvitationEventResponse> invitationEventResponses = new ArrayList<>();
-        for (InvitationEvent invitation : invitations) {
+        for (InvitationEvent invitation : invitationList) {
             User sender = userRepository.findById(invitation.getSenderId()).get();
             String senderName = sender.getUserName();
             Event event = eventRepository.findById(invitation.getEventId()).get();
@@ -185,7 +185,7 @@ public class InvitationService {
             }
         }
         List<InvitationTeamResponse> invitationTeamResponses = new ArrayList<>();
-        for (InvitationTeam invitation : invitations){
+        for (InvitationTeam invitation : invitationList){
             User receiver = userRepository.findById(invitation.getReceiverId()).get();
             String receiverName = receiver.getUserName();
             Team team = teamRepository.findById(invitation.getTeamId()).get();
@@ -210,7 +210,7 @@ public class InvitationService {
         }
 
         List<InvitationEventResponse> invitationEventResponses = new ArrayList<>();
-        for (InvitationEvent invitation : invitations) {
+        for (InvitationEvent invitation : invitationList) {
             User receiver = userRepository.findById(invitation.getReceiverId()).get();
             String receiverName = receiver.getUserName();
             Event event = eventRepository.findById(invitation.getEventId()).get();
