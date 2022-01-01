@@ -208,7 +208,6 @@ public class InvitationService {
                 invitationList.add(invitationEventRepository.findById(invitation.getInvitationId()).get());
             }
         }
-
         List<InvitationEventResponse> invitationEventResponses = new ArrayList<>();
         for (InvitationEvent invitation : invitationList) {
             User receiver = userRepository.findById(invitation.getReceiverId()).get();
