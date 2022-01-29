@@ -3,6 +3,7 @@ package com.tpcc.soccer.manager.service;
 import com.tpcc.soccer.manager.dto.*;
 import com.tpcc.soccer.manager.entity.User;
 import com.tpcc.soccer.manager.dao.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Service
+@Slf4j
 public class UserService {
     @Autowired
     private UserRepository userRepository;
@@ -29,10 +31,13 @@ public class UserService {
     }
 
     public UserResponse addUser(UserRequest request) {
+        log.info("[UserService] addUser Request: [{}]", request);
         Timestamp createTime = new Timestamp((System.currentTimeMillis()/1000)*1000L);
-        User user = User.builder().userName(request.getUserName()).email(request.getEmail()).password(request.getPassword()).userCreateTime(createTime).userLastActiveTime(createTime).build();
+        User user = User.builder().userName(request.getUserName()).email(request.getEmail()).password(request.getPassword()).
+                userCreateTime(createTime).userLastActiveTime(createTime).build();
         User newUser = userRepository.save(user);
-        return UserResponse.builder().userName(newUser.getUserName()).email(newUser.getEmail()).userLastActiveTime(newUser.getUserLastActiveTime()).userCreateTime(newUser.getUserCreateTime()).build();
+        return UserResponse.builder().userName(newUser.getUserName()).email(newUser.getEmail()).userLastActiveTime(newUser.getUserLastActiveTime()).
+                userCreateTime(newUser.getUserCreateTime()).build();
     }
 
     public UserResponse deleteUser(Integer id) {
