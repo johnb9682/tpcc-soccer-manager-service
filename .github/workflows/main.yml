@@ -58,10 +58,10 @@ jobs:
         # be deployed to ECS.
         # docker build . --file Dockerfile --tag ${{ env.IMAGE_TAG }}
         # docker build -t $ECR_REGISTRY/soccer-manager:${{ env.IMAGE_TAG }} .
-        docker build -t $ECR_REGISTRY/soccer-manager:${{ env.IMAGE_TAG }} .
+        docker build -t $ECR_REGISTRY/tpcc-manager-cicd:${{ env.IMAGE_TAG }} .
         # docker push $ECR_REGISTRY/soccer-manager:${{ env.IMAGE_TAG }}
-        docker push $ECR_REGISTRY/soccer-manager:${{ env.IMAGE_TAG }}
-        echo "::set-output name=image::$ECR_REGISTRY/soccer-manager:${{ env.IMAGE_TAG }}"
+        docker push $ECR_REGISTRY/tpcc-manager-cicd:${{ env.IMAGE_TAG }}
+        echo "::set-output name=image::$ECR_REGISTRY/tpcc-manager-cicd:${{ env.IMAGE_TAG }}"
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
