@@ -71,8 +71,8 @@
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:694173688035:task-definition/first-run-task-definition:1",
-  "family": "first-run-task-definition",
+  "taskDefinitionArn": "arn:aws:ecs:ap-southeast-1:694173688035:task-definition/tpcc-manager-cicd-task-definition:1",
+  "family": "tpcc-manager-cicd-task-definition",
   "requiresAttributes": [
     {
       "targetId": null,
